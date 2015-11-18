@@ -1,0 +1,16 @@
+<% if scope.function_versioncmp([scope['bitbucket::version'], '3.8.0']) >= 0 -%>
+setup.displayName=<%= scope['bitbucket::display_name'] %>
+setup.baseUrl=<%= scope['bitbucket::base_url'] %>
+setup.license=<%= scope['bitbucket::license'] %>
+setup.sysadmin.username=<%= scope['bitbucket::sysadmin_username'] %>
+setup.sysadmin.password=<%= scope['bitbucket::sysadmin_password'] %>
+setup.sysadmin.displayName=<%= scope['bitbucket::sysadmin_name'] %>
+setup.sysadmin.emailAddress=<%= scope['bitbucket::sysadmin_email'] %>
+<%- @config_properties.sort.each do |key,value| -%>
+<%=   key %>=<%= value %>
+<%- end -%>
+<% end -%>
+jdbc.driver=<%= scope.lookupvar('bitbucket::dbdriver') %>
+jdbc.url=<%= scope.lookupvar('bitbucket::dburl') %>
+jdbc.user=<%= scope.lookupvar('bitbucket::dbuser') %>
+jdbc.password=<%= scope.lookupvar('bitbucket::dbpassword') %>

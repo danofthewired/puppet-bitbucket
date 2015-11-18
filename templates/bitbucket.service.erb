@@ -1,0 +1,14 @@
+[Unit]
+Description=Atlassian Systemd Jira Service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+Environment="JAVA_HOME=<%= scope.lookupvar('bitbucket::javahome') %>"
+PIDFile=<%= scope.lookupvar('bitbucket::webappdir') %>/work/catalina.pid
+User=<%= scope.lookupvar('bitbucket::user') %>
+ExecStart=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
+ExecStop=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/stop-bitbucket.sh
+
+[Install]
+WantedBy=multi-user.target

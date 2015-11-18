@@ -1,6 +1,6 @@
 fixtures:
   symlinks:
-    stash: "#{source_dir}"
+    bitbucket: "#{source_dir}"
   repositories:
     stdlib: "http://github.com/puppetlabs/puppetlabs-stdlib.git"
     inifile: "http://github.com/puppetlabs/puppetlabs-inifile.git"

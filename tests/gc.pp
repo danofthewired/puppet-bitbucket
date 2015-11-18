@@ -1,1 +1,1 @@
-class { 'stash::gc': }
+class { 'bitbucket::gc': }

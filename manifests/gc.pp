@@ -1,6 +1,6 @@
-# == Class: stash::gc
+# == Class: bitbucket::gc
 #
-# Class to run git gc on stash repo's at regular intervals
+# Class to run git gc on bitbucket repo's at regular intervals
 #
 # === Parameters
 #
@@ -13,21 +13,21 @@
 #
 # === Examples
 #
-# class { 'stash::gc': }
+# class { 'bitbucket::gc': }
 #
-class stash::gc(
+class bitbucket::gc(
   $ensure  = 'present',
   $path    = '/usr/local/bin/git-gc.sh',
   $minute  = 0,
   $hour    = 0,
   $weekday = 'Sunday',
-  $user    = $stash::user,
-  $homedir = $stash::homedir,
+  $user    = $bitbucket::user,
+  $homedir = $bitbucket::homedir,
   ) {
 
-  include ::stash::params
+  include ::bitbucket::params
 
-  if versioncmp($::stash_version, '3.2') < 0 {
+  if versioncmp($::bitbucket_version, '3.2') < 0 {
     $shared = ''
   } else {
     $shared = '/shared'
@@ -35,11 +35,11 @@ class stash::gc(
 
   file { $path:
     ensure  => $ensure,
-    content => template('stash/git-gc.sh.erb'),
+    content => template('bitbucket/git-gc.sh.erb'),
     mode    => '0755',
   } ->
 
-  cron { 'git-gc-stash':
+  cron { 'git-gc-bitbucket':
     ensure  => $ensure,
     command => "${path} &>/dev/null",
     user    => $user,

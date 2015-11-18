@@ -36,7 +36,7 @@ RSpec.configure do |c|
     # Install module
     puppet_module_install(
       :source => proj_root,
-      :module_name => 'stash',
+      :module_name => 'bitbucket',
       :ignore_list => %w(spec/fixtures/* .git/* .vagrant/*),
     )
     hosts.each do |host|

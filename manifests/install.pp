@@ -1,23 +1,23 @@
-# == Class: stash::install
+# == Class: bitbucket::install
 #
-# This installs the stash module. See README.md for details
+# This installs the bitbucket module. See README.md for details
 #
-class stash::install(
-  $version        = $stash::version,
-  $product        = $stash::product,
-  $format         = $stash::format,
-  $installdir     = $stash::installdir,
-  $homedir        = $stash::homedir,
-  $manage_usr_grp = $stash::manage_usr_grp,
-  $user           = $stash::user,
-  $group          = $stash::group,
-  $uid            = $stash::uid,
-  $gid            = $stash::gid,
-  $repoforge      = $stash::repoforge,
-  $download_url   = $stash::download_url,
-  $deploy_module  = $stash::deploy_module,
-  $dburl          = $stash::dburl,
-  $checksum       = $stash::checksum,
+class bitbucket::install(
+  $version        = $bitbucket::version,
+  $product        = $bitbucket::product,
+  $format         = $bitbucket::format,
+  $installdir     = $bitbucket::installdir,
+  $homedir        = $bitbucket::homedir,
+  $manage_usr_grp = $bitbucket::manage_usr_grp,
+  $user           = $bitbucket::user,
+  $group          = $bitbucket::group,
+  $uid            = $bitbucket::uid,
+  $gid            = $bitbucket::gid,
+  $repoforge      = $bitbucket::repoforge,
+  $download_url   = $bitbucket::download_url,
+  $deploy_module  = $bitbucket::deploy_module,
+  $dburl          = $bitbucket::dburl,
+  $checksum       = $bitbucket::checksum,
   $webappdir,
   ) {
 
@@ -31,7 +31,7 @@ class stash::install(
     }
     #Manage the user in the module
     user { $user:
-      comment          => 'Stash daemon account',
+      comment          => 'Bitbucket daemon account',
       shell            => '/bin/bash',
       home             => $homedir,
       password         => '*',

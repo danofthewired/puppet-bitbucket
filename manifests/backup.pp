@@ -1,25 +1,25 @@
 
-# == Class: stash::backup
+# == Class: bitbucket::backup
 #
-# This installs the stash backup client
+# This installs the bitbucket backup client
 #
-class stash::backup(
-  $ensure               = $stash::backup_ensure,
-  $schedule_hour        = $stash::backup_schedule_hour,
-  $schedule_minute      = $stash::backup_schedule_minute,
-  $backupuser           = $stash::backupuser,
-  $backuppass           = $stash::backuppass,
-  $version              = $stash::backupclient_version,
-  $product              = $stash::product,
-  $format               = $stash::format,
-  $homedir              = $stash::homedir,
-  $user                 = $stash::user,
-  $group                = $stash::group,
-  $deploy_module        = $stash::deploy_module,
-  $download_url          = $stash::backupclient_url,
-  $backup_home          = $stash::backup_home,
-  $javahome             = $stash::javahome,
-  $keep_age             = $stash::backup_keep_age,
+class bitbucket::backup(
+  $ensure               = $bitbucket::backup_ensure,
+  $schedule_hour        = $bitbucket::backup_schedule_hour,
+  $schedule_minute      = $bitbucket::backup_schedule_minute,
+  $backupuser           = $bitbucket::backupuser,
+  $backuppass           = $bitbucket::backuppass,
+  $version              = $bitbucket::backupclient_version,
+  $product              = $bitbucket::product,
+  $format               = $bitbucket::format,
+  $homedir              = $bitbucket::homedir,
+  $user                 = $bitbucket::user,
+  $group                = $bitbucket::group,
+  $deploy_module        = $bitbucket::deploy_module,
+  $download_url         = $bitbucket::backupclient_url,
+  $backup_home          = $bitbucket::backup_home,
+  $javahome             = $bitbucket::javahome,
+  $keep_age             = $bitbucket::backup_keep_age,
   ) {
 
   $appdir = "${backup_home}/${product}-backup-client-${version}"
@@ -84,9 +84,9 @@ class stash::backup(
   }
 
   # Enable Cronjob
-  $backup_cmd = "${java_bin} -Dstash.password=\"${backuppass}\" -Dstash.user=\"${backupuser}\" -Dstash.baseUrl=\"http://localhost:7990\" -Dstash.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/stash-backup-client.jar"
+  $backup_cmd = "${java_bin} -Dbitbucket.password=\"${backuppass}\" -Dbitbucket.user=\"${backupuser}\" -Dbitbucket.baseUrl=\"http://localhost:7990\" -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/bitbucket-backup-client.jar"
 
-  cron { 'Backup Stash':
+  cron { 'Backup Bitbucket':
     ensure  => $ensure,
     command => $backup_cmd,
     user    => $user,

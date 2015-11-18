@@ -1,83 +1,83 @@
-# == Class: stash
+# == Class: bitbucket
 #
-# This configures the stash module. See README.md for details
+# This configures the bitbucket module. See README.md for details
 #
-class stash::config(
-  $version      = $stash::version,
-  $user         = $stash::user,
-  $group        = $stash::group,
-  $proxy        = $stash::proxy,
-  $context_path = $stash::context_path,
-  $tomcat_port  = $stash::tomcat_port,
-  $config_properties = $stash::config_properties,
+class bitbucket::config(
+  $version      = $bitbucket::version,
+  $user         = $bitbucket::user,
+  $group        = $bitbucket::group,
+  $proxy        = $bitbucket::proxy,
+  $context_path = $bitbucket::context_path,
+  $tomcat_port  = $bitbucket::tomcat_port,
+  $config_properties = $bitbucket::config_properties,
 ) {
 
   # Atlassian changed where files are installed from ver 3.2.0
   # See issue #16 for more detail
   if versioncmp($version, '3.2.0') > 0 {
     $moved = 'shared/'
-    file { "${stash::homedir}/${moved}":
+    file { "${bitbucket::homedir}/${moved}":
       ensure  => 'directory',
       owner   => $user,
       group   => $group,
-      require => File[$stash::homedir],
+      require => File[$bitbucket::homedir],
     }
   } else {
     $moved = undef
   }
 
   File {
-    owner => $stash::user,
-    group => $stash::group,
+    owner => $bitbucket::user,
+    group => $bitbucket::group,
   }
 
   if versioncmp($version, '3.8.0') >= 0 {
-    $server_xml = "${stash::homedir}/shared/server.xml"
+    $server_xml = "${bitbucket::homedir}/shared/server.xml"
   } else {
-    $server_xml = "${stash::webappdir}/conf/server.xml"
+    $server_xml = "${bitbucket::webappdir}/conf/server.xml"
   }
 
-  file { "${stash::webappdir}/bin/setenv.sh":
-    content => template('stash/setenv.sh.erb'),
+  file { "${bitbucket::webappdir}/bin/setenv.sh":
+    content => template('bitbucket/setenv.sh.erb'),
     mode    => '0750',
-    require => Class['stash::install'],
-    notify  => Class['stash::service'],
+    require => Class['bitbucket::install'],
+    notify  => Class['bitbucket::service'],
   } ->
 
-  file { "${stash::webappdir}/bin/user.sh":
-    content => template('stash/user.sh.erb'),
+  file { "${bitbucket::webappdir}/bin/user.sh":
+    content => template('bitbucket/user.sh.erb'),
     mode    => '0750',
     require => [
-      Class['stash::install'],
-      File[$stash::webappdir],
-      File[$stash::homedir]
+      Class['bitbucket::install'],
+      File[$bitbucket::webappdir],
+      File[$bitbucket::homedir]
     ],
   }->
 
   file { $server_xml:
-    content => template('stash/server.xml.erb'),
+    content => template('bitbucket/server.xml.erb'),
     mode    => '0640',
-    require => Class['stash::install'],
-    notify  => Class['stash::service'],
+    require => Class['bitbucket::install'],
+    notify  => Class['bitbucket::service'],
   } ->
 
-  ini_setting { 'stash_httpport':
+  ini_setting { 'bitbucket_httpport':
     ensure  => present,
-    path    => "${stash::webappdir}/conf/scripts.cfg",
+    path    => "${bitbucket::webappdir}/conf/scripts.cfg",
     section => '',
-    setting => 'stash_httpport',
+    setting => 'bitbucket_httpport',
     value   => $tomcat_port,
-    require => Class['stash::install'],
-    before  => Class['stash::service'],
+    require => Class['bitbucket::install'],
+    before  => Class['bitbucket::service'],
   } ->
 
-  file { "${stash::homedir}/${moved}stash-config.properties":
-    content => template('stash/stash-config.properties.erb'),
+  file { "${bitbucket::homedir}/${moved}bitbucket.properties":
+    content => template('bitbucket/bitbucket.properties.erb'),
     mode    => '0640',
     require => [
-      Class['stash::install'],
-      File[$stash::webappdir],
-      File[$stash::homedir]
+      Class['bitbucket::install'],
+      File[$bitbucket::webappdir],
+      File[$bitbucket::homedir]
     ],
   }
 }

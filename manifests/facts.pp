@@ -1,26 +1,26 @@
-# == Class: stash::facts
+# == Class: bitbucket::facts
 #
-# Class to add some facts for stash. They have been added as an external fact
+# Class to add some facts for bitbucket. They have been added as an external fact
 # because we do not want to distrubute these facts to all systems.
 #
 # === Parameters
 #
 # [*port*]
-#   port that stash listens on.
+#   port that bitbucket listens on.
 # [*uri*]
-#   ip that stash is listening on, defaults to localhost.
+#   ip that bitbucket is listening on, defaults to localhost.
 #
 # === Examples
 #
-# class { 'stash::facts': }
+# class { 'bitbucket::facts': }
 #
-class stash::facts(
+class bitbucket::facts(
   $ensure        = 'present',
   $port          = '7990',
   $uri           = '127.0.0.1',
-  $context_path  = $stash::context_path,
-  $json_packages = $stash::params::json_packages,
-) inherits stash {
+  $context_path  = $bitbucket::context_path,
+  $json_packages = $bitbucket::params::json_packages,
+) inherits bitbucket {
 
   # Puppet Enterprise supplies its own ruby version if your using it.
   # A modern ruby version is required to run the executable fact
@@ -49,9 +49,9 @@ class stash::facts(
     }
   }
 
-  file { "/etc/${dir}facter/facts.d/stash_facts.rb":
+  file { "/etc/${dir}facter/facts.d/bitbucket_facts.rb":
     ensure  => $ensure,
-    content => template('stash/facts.rb.erb'),
+    content => template('bitbucket/facts.rb.erb'),
     mode    => '0500',
   }
 

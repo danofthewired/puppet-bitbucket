@@ -1,15 +1,15 @@
-# == Class: stash::service
+# == Class: bitbucket::service
 #
-# This manages the stash service. See README.md for details
+# This manages the bitbucket service. See README.md for details
 # 
-class stash::service  (
+class bitbucket::service  (
 
-  $service_manage        = $stash::service_manage,
-  $service_ensure        = $stash::service_ensure,
-  $service_enable        = $stash::service_enable,
-  $service_file_location = $stash::params::service_file_location,
-  $service_file_template = $stash::params::service_file_template,
-  $service_lockfile      = $stash::params::service_lockfile,
+  $service_manage        = $bitbucket::service_manage,
+  $service_ensure        = $bitbucket::service_ensure,
+  $service_enable        = $bitbucket::service_enable,
+  $service_file_location = $bitbucket::params::service_file_location,
+  $service_file_template = $bitbucket::params::service_file_template,
+  $service_lockfile      = $bitbucket::params::service_lockfile,
 
 ) {
 
@@ -20,7 +20,7 @@ class stash::service  (
     mode    => '0755',
   }
 
-  if $stash::service_manage {
+  if $bitbucket::service_manage {
 
     validate_string($service_ensure)
     validate_bool($service_enable)
@@ -30,11 +30,11 @@ class stash::service  (
         command     => 'systemctl daemon-reload',
         refreshonly => true,
         subscribe   => File[$service_file_location],
-        before      => Service['stash'],
+        before      => Service['bitbucket'],
       }
     }
 
-    service { 'stash':
+    service { 'bitbucket':
       ensure  => $service_ensure,
       enable  => $service_enable,
       require => File[$service_file_location],

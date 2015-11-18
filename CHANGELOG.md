@@ -1,5 +1,6 @@
 ##2015-XX-XX - Release 2.0.0
 ###Summary
+- Add Bitbucket Server 4.0+ changes and support
 - Remove support for installing upstream java mysql connector
 - Remove support for installing git, a git module should be used
 

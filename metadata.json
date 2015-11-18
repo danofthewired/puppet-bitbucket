@@ -1,13 +1,13 @@
 {
-  "name": "puppet-stash",
+  "name": "puppet-bitbucket",
   "version": "2.0.0",
   "author": "puppetcommunity",
-  "summary": "Install Atlassian stash",
+  "summary": "Install Atlassian Bitbucket",
   "license": "MIT",
-  "source": "https://github.com/puppet-community/puppet-stash.git",
-  "project_page": "https://github.com/puppet-community/puppet-stash",
-  "issues_url": "https://github.com/puppet-community/puppet-stash/issues",
-  "description": "Module to install Atlassian Stash. On-premises source code management for Git that's secure, fast, and enterprise grade.",
+  "source": "https://github.com/puppet-community/puppet-bitbucket.git",
+  "project_page": "https://github.com/puppet-community/puppet-bitbucket",
+  "issues_url": "https://github.com/puppet-community/puppet-bitbucket/issues",
+  "description": "Module to install Atlassian Bitbucket. On-premises source code management for Git that's secure, fast, and enterprise grade.",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
