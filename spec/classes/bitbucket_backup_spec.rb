@@ -15,30 +15,30 @@ describe 'bitbucket' do
                 .with('source' => "https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/#{BACKUP_VERSION}/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz",
                       'extract_path' => '/opt/bitbucket-backup',
                       'creates' => "/opt/bitbucket-backup/bitbucket-backup-client-#{BACKUP_VERSION}/lib",
-                      'user' => 'bitbucket',
-                      'group' => 'bitbucket',)
+                      'user' => 'atlbitbucket',
+                      'group' => 'atlbitbucket',)
             end
 
             it 'should manage the bitbucket-backup directories' do
               should contain_file('/opt/bitbucket-backup')
                 .with('ensure' => 'directory',
-                      'owner'  => 'bitbucket',
-                      'group'  => 'bitbucket')
+                      'owner'  => 'atlbitbucket',
+                      'group'  => 'atlbitbucket')
               should contain_file("/opt/bitbucket-backup/bitbucket-backup-client-#{BACKUP_VERSION}")
                 .with('ensure' => 'directory',
-                      'owner'  => 'bitbucket',
-                      'group'  => 'bitbucket').that_requires("Archive[/tmp/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz]")
+                      'owner'  => 'atlbitbucket',
+                      'group'  => 'atlbitbucket').that_requires("Archive[/tmp/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz]")
 
               should contain_file('/opt/bitbucket-backup/archives')
                 .with('ensure' => 'directory',
-                      'owner'  => 'bitbucket',
-                      'group'  => 'bitbucket')
+                      'owner'  => 'atlbitbucket',
+                      'group'  => 'atlbitbucket')
             end
             it 'should manage the backup cron job' do
               should contain_cron('Backup Bitbucket')
                 .with('ensure'  => 'present',
                       'command' => "/usr/bin/java -Dbitbucket.password=\"password\" -Dbitbucket.user=\"admin\" -Dbitbucket.baseUrl=\"http://localhost:7990\" -Dbitbucket.home=/home/bitbucket -Dbackup.home=/opt/bitbucket-backup/archives -jar /opt/bitbucket-backup/bitbucket-backup-client-#{BACKUP_VERSION}/bitbucket-backup-client.jar",
-                      'user'    => 'bitbucket',
+                      'user'    => 'atlbitbucket',
                       'hour'    => '5',
                       'minute'  => '0',)
             end
