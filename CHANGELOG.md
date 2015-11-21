@@ -1,4 +1,4 @@
-##2015-11-18 - Release 2.0.0 (Bitbucker Server)
+##2015-11-18 - Release 2.0.1 (Bitbucker Server)
 ###Summary
 - Add Bitbucket Server 4.0+ changes and support.
 - Remove support for installing upstream java mysql connector
