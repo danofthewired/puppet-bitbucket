@@ -16,8 +16,8 @@ describe 'bitbucket' do
           end
           it 'should stop service and remove old config file' do
             should contain_exec('service bitbucket stop && sleep 15')
-            should contain_exec('rm -f /home/bitbucket/bitbucket.properties')
-              .with(:command => 'rm -f /home/bitbucket/bitbucket.properties',)
+            should contain_exec('rm -f /home/bitbucket/stash-config.properties')
+              .with(:command => 'rm -f /home/bitbucket/stash-config.properties',)
             should contain_notify('Attempting to upgrade bitbucket')
           end
         end
