@@ -1,12 +1,12 @@
 {
   "name": "puppet-bitbucket",
-  "version": "2.0.0",
-  "author": "puppetcommunity",
+  "version": "1.0.0",
+  "author": "thewired",
   "summary": "Install Atlassian Bitbucket",
   "license": "MIT",
-  "source": "https://github.com/puppet-community/puppet-bitbucket.git",
-  "project_page": "https://github.com/puppet-community/puppet-bitbucket",
-  "issues_url": "https://github.com/puppet-community/puppet-bitbucket/issues",
+  "source": "https://github.com/danofthewired/puppet-bitbucket.git",
+  "project_page": "https://github.com/danofthewired/puppet-bitbucket",
+  "issues_url": "https://github.com/danofthewired/puppet-bitbucket/issues",
   "description": "Module to install Atlassian Bitbucket. On-premises source code management for Git that's secure, fast, and enterprise grade.",
   "operatingsystem_support": [
     {
