@@ -1,5 +1,6 @@
 #puppet-bitbucket
-[![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/bitbucket.svg)](https://forge.puppetlabs.com/thewired/bitbucket)
+[![Build Status](https://travis-ci.org/danofthewired/puppet-bitbucket.svg?branch=master)](https://travis-ci.org/danofthewired/puppet-bitbucket)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/thewired/bitbucket.svg)](https://forge.puppetlabs.com/thewired/bitbucket)
 
 ####Table of Contents
 
