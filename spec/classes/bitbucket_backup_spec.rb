@@ -72,12 +72,12 @@ describe 'bitbucket' do
                 .with('source' => 'https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/99.43.111/bitbucket-backup-distribution-99.43.111.tar.gz',
                       'extract_path' => '/opt/bitbucket-backup',
                       'creates' => '/opt/bitbucket-backup/bitbucket-backup-client-99.43.111/lib',
-                      'user' => 'bitbucket',
-                      'group' => 'bitbucket',)
+                      'user' => 'atlbitbucket',
+                      'group' => 'atlbitbucket',)
               should contain_file('/opt/bitbucket-backup/bitbucket-backup-client-99.43.111')
                 .with('ensure' => 'directory',
-                      'owner'  => 'bitbucket',
-                      'group'  => 'bitbucket')
+                      'owner'  => 'atlbitbucket',
+                      'group'  => 'atlbitbucket')
               should contain_cron('Backup Bitbucket').with('command' => '/usr/bin/java -Dbitbucket.password="password" -Dbitbucket.user="admin" -Dbitbucket.baseUrl="http://localhost:7990" -Dbitbucket.home=/home/bitbucket -Dbackup.home=/opt/bitbucket-backup/archives -jar /opt/bitbucket-backup/bitbucket-backup-client-99.43.111/bitbucket-backup-client.jar',)
             end
           end
@@ -90,8 +90,8 @@ describe 'bitbucket' do
               should contain_class('bitbucket').with_backup_home(%r{my/backup})
               should contain_file('/my/backup/archives')
                 .with('ensure' => 'directory',
-                      'owner'  => 'bitbucket',
-                      'group'  => 'bitbucket')
+                      'owner'  => 'atlbitbucket',
+                      'group'  => 'atlbitbucket')
               should contain_cron('Backup Bitbucket').with('command' => "/usr/bin/java -Dbitbucket.password=\"password\" -Dbitbucket.user=\"admin\" -Dbitbucket.baseUrl=\"http://localhost:7990\" -Dbitbucket.home=/home/bitbucket -Dbackup.home=/my/backup/archives -jar /my/backup/bitbucket-backup-client-#{BACKUP_VERSION}/bitbucket-backup-client.jar",)
             end
           end
