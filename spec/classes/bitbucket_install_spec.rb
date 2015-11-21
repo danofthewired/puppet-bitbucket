@@ -17,23 +17,23 @@ describe 'bitbucket' do
               .with('extract_path' => '/opt/bitbucket',
                     'source' => "http://www.atlassian.com/software/bitbucket/downloads/binary//atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz",
                     'creates' => "/opt/bitbucket/atlassian-bitbucket-#{BITBUCKET_VERSION}/conf",
-                    'user' => 'bitbucket',
-                    'group' => 'bitbucket',
+                    'user' => 'atlbitbucket',
+                    'group' => 'atlbitbucket',
                     'checksum_type' => 'md5',)
           end
 
           it 'should manage the bitbucket home directory' do
             should contain_file('/home/bitbucket')
               .with('ensure' => 'directory',
-                    'owner' => 'bitbucket',
-                    'group' => 'bitbucket')
+                    'owner' => 'atlbitbucket',
+                    'group' => 'atlbitbucket')
           end
 
           it 'should manage the bitbucket application directory' do
             should contain_file("/opt/bitbucket/atlassian-bitbucket-#{BITBUCKET_VERSION}")
               .with('ensure' => 'directory',
-                    'owner' => 'bitbucket',
-                    'group' => 'bitbucket').that_requires("Archive[/tmp/atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz]")
+                    'owner' => 'atlbitbucket',
+                    'group' => 'atlbitbucket').that_requires("Archive[/tmp/atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz]")
           end
 
           context 'when managing the user and group inside the module' do
@@ -41,8 +41,8 @@ describe 'bitbucket' do
               { :manage_usr_grp => true }
             end
             context 'when no user or group are specified' do
-              it { should contain_user('bitbucket').with_shell('/bin/bash') }
-              it { should contain_group('bitbucket') }
+              it { should contain_user('atlbitbucket').with_shell('/bin/bash') }
+              it { should contain_group('atlbitbucket') }
             end
             context 'when a user and group is specified' do
               let(:params) do
@@ -60,8 +60,8 @@ describe 'bitbucket' do
               let(:params) do
                 { :manage_usr_grp => false }
               end
-              it { should_not contain_user('bitbucket') }
-              it { should_not contain_group('bitbucket') }
+              it { should_not contain_user('atlbitbucket') }
+              it { should_not contain_group('atlbitbucket') }
             end
           end
 

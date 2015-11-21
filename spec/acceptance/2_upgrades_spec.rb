@@ -57,12 +57,12 @@ describe 'bitbucket', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')
     it { should be_enabled }
   end
 
-  describe user('bitbucket') do
+  describe user('atlbitbucket') do
     it { should exist }
   end
 
-  describe user('bitbucket') do
-    it { should belong_to_group 'bitbucket' }
+  describe user('atlbitbucket') do
+    it { should belong_to_group 'atlbitbucket' }
   end
 
   describe user('bitbucket') do
