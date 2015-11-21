@@ -6,7 +6,7 @@ AllCops:
 
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
-  Max: 350
+  Max: 360
 
 # dealbreaker:
 Style/TrailingComma:
