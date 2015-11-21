@@ -1,5 +1,5 @@
 #puppet-bitbucket
-[![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/bitbucket.svg)](https://forge.puppetlabs.com/puppet/bitbucket)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/bitbucket.svg)](https://forge.puppetlabs.com/thewired/bitbucket)
 [![Build Status](https://travis-ci.org/puppet-community/puppet-bitbucket.svg?branch=master)](https://travis-ci.org/puppet-community/puppet-bitbucket)
 
 :warning: This module is going through a number of changes in preparation for version 4 (Bitbucket-server). It is recommended to use the puppet-forge versions and not the github master branch.
@@ -24,10 +24,9 @@
 
 This is a puppet module to install Atlassian Bitbucket. On-premises source code management for Git that's secure, fast, and enterprise grade.
 
-|Module Version   | Support Bitbucket versions  |
-|-----------------|-------------------------|
-| 1.3.0           | 3.0.0 - 3.9.2           |
-| 2.0.0           | 3.9.2 - 4.x.x           |
+|Module Version   | Supported Stash/Bitbucket versions  |
+|-----------------|-------------------------------------|
+| 2.0.0           | 3.9.2 - 4.x.x                       |
 
 ##Module Description
 
@@ -49,8 +48,6 @@ You must have your database setup with the account user that Bitbucket will use.
 
 When using this module to upgrade Bitbucket, please make sure you have a database/Bitbucket home backup. We plan to include a class for backing up the bitbucket home directory in a future release.
 
-When upgrading bitbucket from < 3.8.0 to >= 3.8.0 puppet will notify the bitbucket service to restart for two puppet runs. This is because the bitbucket upgrade makes file attribute and content changes to the bitbucket-config.properties. See issue #74
-
 ###Beginning with Bitbucket
 This puppet module will automatically download the Bitbucket tar.gz from Atlassian and extracts it into /opt/bitbucket/atlassian-bitbucket-$version. The default Bitbucket home is /home/bitbucket.
 
@@ -63,7 +60,7 @@ This puppet module will automatically download the Bitbucket tar.gz from Atlassi
 
 ```puppet
   class { 'bitbucket':
-    version        => '3.3.0',
+    version        => '4.0.2',
     javahome       => '/opt/java',
     dburl          => 'jdbc:postgresql://bitbucket.example.com:5433/bitbucket',
     dbpassword     => $bitbucketpass,
@@ -81,7 +78,7 @@ Enable a bitbucket backup
 ```puppet
   class { 'bitbucket':
     backup_ensure          => present,
-    backupclient_version    => '1.6.0',
+    backupclient_version    => '2.0.0',
     backup_home            => '/opt/bitbucket-backup',
     backupuser             => 'admin',
     backuppass             => 'password',
@@ -101,7 +98,7 @@ Bitbucket can be upgraded by incrementing this version number. This will *STOP* 
 ```puppet
   class { 'bitbucket':
     javahome => '/opt/java',
-    version  => '3.4.0',
+    version  => '4.0.2',
   }
   class { 'bitbucket::facts': }
 ```
@@ -109,7 +106,7 @@ If the bitbucket service is managed outside of puppet the stop_bitbucket paramat
 ```puppet
   class { 'bitbucket':
     javahome   => '/opt/java',
-    version    => '3.4.0',
+    version    => '4.0.2',
     stop_bitbucket => 'crm resource stop bitbucket && sleep 15',
   }
   class { 'bitbucket::facts': }
@@ -125,7 +122,7 @@ This is especially useful for setting properties such as HTTP/https proxy settin
 
 ```puppet
   class { 'bitbucket':
-    version        => '2.2.0',
+    version        => '4.0.2',
     installdir     => '/opt/atlassian/atlassian-bitbucket',
     homedir        => '/opt/atlassian/application-data/bitbucket-home',
     javahome       => '/opt/java',
@@ -153,7 +150,7 @@ This example is used in production for 500 users in an traditional enterprise en
 
 ```yaml
 # Bitbucket configuration
-bitbucket::version:        '3.4.0'
+bitbucket::version:        '4.0.2'
 bitbucket::installdir:     '/opt/atlassian/atlassian-bitbucket'
 bitbucket::homedir:        '/opt/atlassian/application-data/bitbucket-home'
 bitbucket::javahome:       '/opt/java'
@@ -338,3 +335,4 @@ BEAKER_set==centos-64-x64 bundle exec rake beaker
 * Sebastian Cole
 * Geoff Williams
 * Bruce Morrison
+* Daniel Duwe
