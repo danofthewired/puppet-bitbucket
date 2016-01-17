@@ -9,7 +9,9 @@ Metrics/LineLength:
   Max: 360
 
 # dealbreaker:
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  Enabled: false
+Style/TrailingCommaInArguments:
   Enabled: false
 Style/ClosingParenthesisIndentation:
   Enabled: false
