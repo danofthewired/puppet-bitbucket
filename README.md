@@ -253,7 +253,7 @@ Reverse https proxy configuration. See examples for more detail. Default: {}
 ####Miscellaneous  parameters####
 
 #####`download_url`
-Where to download the bitbucket binaries from. Default: 'http://www.atlassian.com/software/bitbucket/downloads/binary/'
+Where to download the bitbucket binaries from. Default: 'https://downloads.atlassian.com/software/stash/downloads/'
 #####`checksum`
 The md5 checksum of the archive file. Only supported with `deploy_module => archive`. Defaults to 'undef'
 #####`service_manage`
