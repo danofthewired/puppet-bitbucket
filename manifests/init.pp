@@ -46,8 +46,8 @@ class bitbucket(
   $dbdriver     = 'org.postgresql.Driver',
 
   # Misc Settings
-  $download_url  = 'http://www.atlassian.com/software/stash/downloads/binary',
-  $checksum     = 'f18c06852bffd42f46ce77012ac1ec39',
+  $download_url  = 'https://downloads.atlassian.com/software/stash/downloads',
+  $checksum     = undef,
 
   # Backup Settings
   $backup_ensure          = 'present',
