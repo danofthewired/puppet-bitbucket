@@ -14,7 +14,7 @@ class bitbucket(
   $java_opts    = '',
 
   # Bitbucket Settings
-  $version      = '3.7.0',
+  $version      = '4.2.0',
   $product      = 'bitbucket',
   $format       = 'tar.gz',
   $installdir   = '/opt/bitbucket',
@@ -29,7 +29,7 @@ class bitbucket(
   $uid            = undef,
   $gid            = undef,
 
-  # Bitbucket 3.8 initialization configurations
+  # Bitbucket 4.2.0 initialization configurations
   $display_name  = 'bitbucket',
   $base_url      = "https://${::fqdn}",
   $license       = '',
@@ -46,13 +46,13 @@ class bitbucket(
   $dbdriver     = 'org.postgresql.Driver',
 
   # Misc Settings
-  $download_url  = 'http://www.atlassian.com/software/bitbucket/downloads/binary/',
-  $checksum     = undef,
+  $download_url  = 'https://www.atlassian.com/software/stash/downloads/binary/',
+  $checksum     = 'f18c06852bffd42f46ce77012ac1ec39',
 
   # Backup Settings
   $backup_ensure          = 'present',
-  $backupclient_url       = 'https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution',
-  $backupclient_version   = '1.9.1',
+  $backupclient_url       = 'https://marketplace.atlassian.com/download/plugins/com.atlassian.stash.backup.client/version',
+  $backupclient_version   = '200000200',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
@@ -73,7 +73,7 @@ class bitbucket(
   # puppetlabs-corosync module: 'crm resource stop bitbucket && sleep 15'
   $stop_bitbucket = 'service bitbucket stop && sleep 15',
 
-  # Choose whether to use puppet-staging, or puppet-archive
+  # Choose whether to use nanliu-staging, or puppet-archive
   $deploy_module = 'archive',
 
 ) {
