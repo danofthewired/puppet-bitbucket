@@ -4,15 +4,15 @@ require 'spec_helper_acceptance'
 # Set environment variable download_url to use local webserver
 # export download_url = 'http://10.0.0.XXX/'
 download_url = ENV['download_url'] if ENV['download_url']
-if ENV['download_url']
-  download_url = ENV['download_url']
+download_url = if ENV['download_url']
+  ENV['download_url']
 else
-  download_url = 'undef'
+  'undef'
 end
-if download_url == 'undef'
-  java_url = "'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/'"
+java_url = if download_url == 'undef'
+  "'http://download.oracle.com/otn-pub/java/jdk/8u45-b14/'"
 else
-  java_url = download_url
+  download_url
 end
 
 # We add the sleeps everywhere to give bitbucket enough
