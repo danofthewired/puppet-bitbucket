@@ -22,7 +22,7 @@ unless proxy_host.empty?
   end
 end
 
-UNSUPPORTED_PLATFORMS = %w(AIX windows Solaris)
+UNSUPPORTED_PLATFORMS = %w(AIX windows Solaris).freeze
 
 RSpec.configure do |c|
   # Project root

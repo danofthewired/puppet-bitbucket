@@ -31,3 +31,5 @@ Style/WordArray:
 # providers
 Style/ClassAndModuleChildren:
   Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
