@@ -265,7 +265,7 @@ Defaults to 'true'
 #####`$stop_bitbucket`
 If the bitbucket service is managed outside of puppet the stop_bitbucket paramater can be used to shut down bitbucket for upgrades. Defaults to 'service bitbucket stop && sleep 15'
 #####`deploy_module`
-Module to use for installed bitbucket archive fille. Supports puppet-archive and puppet-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging support s3 buckets. 
+Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets. 
 #####`config_properties`
 Extra configuration options for bitbucket (bitbucket-config.properties). See https://confluence.atlassian.com/display/STASH/Bitbucket+config+properties for available options. Must be a hash, Default: {}
 
