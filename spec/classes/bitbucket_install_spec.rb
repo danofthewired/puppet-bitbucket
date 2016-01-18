@@ -15,7 +15,7 @@ describe 'bitbucket' do
           it 'should deploy bitbucket from archive' do
             should contain_archive("/tmp/atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz")
               .with('extract_path' => '/opt/bitbucket',
-                    'source' => "http://www.atlassian.com/software/bitbucket/downloads/binary//atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz",
+                    'source' => "http://www.atlassian.com/software/stash/downloads/binary/atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz",
                     'creates' => "/opt/bitbucket/atlassian-bitbucket-#{BITBUCKET_VERSION}/conf",
                     'user' => 'atlbitbucket',
                     'group' => 'atlbitbucket',
@@ -80,7 +80,7 @@ describe 'bitbucket' do
             end
             it do
               should contain_staging__file("atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz")
-                .with('source' => "http://downloads.atlassian.com//atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz",)
+                .with('source' => "http://downloads.atlassian.com/atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz",)
               should contain_staging__extract("atlassian-bitbucket-#{BITBUCKET_VERSION}.tar.gz")
                 .with('target'  => "/custom/bitbucket/atlassian-bitbucket-#{BITBUCKET_VERSION}",
                       'user'    => 'foo',
