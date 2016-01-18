@@ -47,7 +47,7 @@ class bitbucket::backup(
     'staging': {
       require staging
       staging::file { $file:
-        source  => "${download_url}/${version}/${file}",
+        source  => "${download_url}/${file}",
         timeout => 1800,
       } ->
       staging::extract { $file:

@@ -273,7 +273,7 @@ Extra configuration options for bitbucket (bitbucket-config.properties). See htt
 #####`backup_ensure`
 Enable or disable the backup cron job. Defaults to present.
 #####`backupclient_version`
-The version of the backup client to install. Defaults to '1.9.1'
+The version of the backup client to install. Defaults to '2.0.2'
 #####`backup_home`
 Home directory to use for backups. Backups are created here under /archive. Defaults to '/opt/bitbucket-backup'.
 #####`backupuser`
