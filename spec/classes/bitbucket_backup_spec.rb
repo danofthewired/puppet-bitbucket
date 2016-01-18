@@ -12,7 +12,7 @@ describe 'bitbucket' do
           context 'install bitbucket backup client with default params' do
             it 'should deploy bitbucket backup client 1.9.1 from tar.gz' do
               should contain_archive("/tmp/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz")
-                .with('source' => "https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/#{BACKUP_VERSION}/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz",
+                .with('source' => "https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz",
                       'extract_path' => '/opt/bitbucket-backup',
                       'creates' => "/opt/bitbucket-backup/bitbucket-backup-client-#{BACKUP_VERSION}/lib",
                       'user' => 'atlbitbucket',
