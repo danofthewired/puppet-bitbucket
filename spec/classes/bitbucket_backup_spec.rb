@@ -10,9 +10,9 @@ describe 'bitbucket' do
           end
 
           context 'install bitbucket backup client with default params' do
-            it 'should deploy bitbucket backup client 1.9.1 from tar.gz' do
+            it 'should deploy bitbucket backup client 2.0.2 from tar.gz' do
               should contain_archive("/tmp/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz")
-                .with('source' => "https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/#{BACKUP_VERSION}/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz",
+                .with('source' => "https://marketplace.atlassian.com/download/plugins/com.atlassian.stash.backup.client/version/200000200/bitbucket-backup-distribution-#{BACKUP_VERSION}.tar.gz",
                       'extract_path' => '/opt/bitbucket-backup',
                       'creates' => "/opt/bitbucket-backup/bitbucket-backup-client-#{BACKUP_VERSION}/lib",
                       'user' => 'atlbitbucket',
@@ -69,7 +69,7 @@ describe 'bitbucket' do
             end
             it do
               should contain_archive('/tmp/bitbucket-backup-distribution-99.43.111.tar.gz')
-                .with('source' => 'https://maven.atlassian.com/public/com/atlassian/bitbucket/backup/bitbucket-backup-distribution/99.43.111/bitbucket-backup-distribution-99.43.111.tar.gz',
+                .with('source' => 'https://marketplace.atlassian.com/download/plugins/com.atlassian.stash.backup.client/version/200000200/bitbucket-backup-distribution-99.43.111.tar.gz',
                       'extract_path' => '/opt/bitbucket-backup',
                       'creates' => '/opt/bitbucket-backup/bitbucket-backup-client-99.43.111/lib',
                       'user' => 'atlbitbucket',

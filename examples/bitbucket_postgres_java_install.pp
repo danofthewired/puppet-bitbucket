@@ -15,7 +15,7 @@ node default {
     strip           => true,
   } ->
   class { '::bitbucket':
-    version  => '4.0.2',
+    version  => '4.2.0',
     javahome => '/opt/java',
     proxy    => {
       scheme    => 'http',

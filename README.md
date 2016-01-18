@@ -24,7 +24,7 @@ This is a puppet module to install Atlassian Bitbucket. On-premises source code 
 
 |Module Version   | Supported Stash/Bitbucket versions  |
 |-----------------|-------------------------------------|
-| 2.0.0           | 3.9.2 - 4.x.x                       |
+| 2.0.x           | 4.x.x                               |
 
 ##Module Description
 
@@ -58,7 +58,7 @@ This puppet module will automatically download the Bitbucket tar.gz from Atlassi
 
 ```puppet
   class { 'bitbucket':
-    version        => '4.0.2',
+    version        => '4.2.0',
     javahome       => '/opt/java',
     dburl          => 'jdbc:postgresql://bitbucket.example.com:5433/bitbucket',
     dbpassword     => $bitbucketpass,
@@ -76,7 +76,7 @@ Enable a bitbucket backup
 ```puppet
   class { 'bitbucket':
     backup_ensure          => present,
-    backupclient_version    => '2.0.0',
+    backupclient_version    => '2.0.2',
     backup_home            => '/opt/bitbucket-backup',
     backupuser             => 'admin',
     backuppass             => 'password',
@@ -96,7 +96,7 @@ Bitbucket can be upgraded by incrementing this version number. This will *STOP* 
 ```puppet
   class { 'bitbucket':
     javahome => '/opt/java',
-    version  => '4.0.2',
+    version  => '4.2.0',
   }
   class { 'bitbucket::facts': }
 ```
@@ -104,7 +104,7 @@ If the bitbucket service is managed outside of puppet the stop_bitbucket paramat
 ```puppet
   class { 'bitbucket':
     javahome   => '/opt/java',
-    version    => '4.0.2',
+    version    => '4.2.0',
     stop_bitbucket => 'crm resource stop bitbucket && sleep 15',
   }
   class { 'bitbucket::facts': }
@@ -120,7 +120,7 @@ This is especially useful for setting properties such as HTTP/https proxy settin
 
 ```puppet
   class { 'bitbucket':
-    version        => '4.0.2',
+    version        => '4.2.0',
     installdir     => '/opt/atlassian/atlassian-bitbucket',
     homedir        => '/opt/atlassian/application-data/bitbucket-home',
     javahome       => '/opt/java',
@@ -148,7 +148,7 @@ This example is used in production for 500 users in an traditional enterprise en
 
 ```yaml
 # Bitbucket configuration
-bitbucket::version:        '4.0.2'
+bitbucket::version:        '4.2.0'
 bitbucket::installdir:     '/opt/atlassian/atlassian-bitbucket'
 bitbucket::homedir:        '/opt/atlassian/application-data/bitbucket-home'
 bitbucket::javahome:       '/opt/java'
@@ -253,7 +253,7 @@ Reverse https proxy configuration. See examples for more detail. Default: {}
 ####Miscellaneous  parameters####
 
 #####`download_url`
-Where to download the bitbucket binaries from. Default: 'http://www.atlassian.com/software/bitbucket/downloads/binary/'
+Where to download the bitbucket binaries from. Default: 'http://www.atlassian.com/software/stash/downloads/binary'
 #####`checksum`
 The md5 checksum of the archive file. Only supported with `deploy_module => archive`. Defaults to 'undef'
 #####`service_manage`
@@ -265,7 +265,7 @@ Defaults to 'true'
 #####`$stop_bitbucket`
 If the bitbucket service is managed outside of puppet the stop_bitbucket paramater can be used to shut down bitbucket for upgrades. Defaults to 'service bitbucket stop && sleep 15'
 #####`deploy_module`
-Module to use for installed bitbucket archive fille. Supports puppet-archive and puppet-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging support s3 buckets. 
+Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets. 
 #####`config_properties`
 Extra configuration options for bitbucket (bitbucket-config.properties). See https://confluence.atlassian.com/display/STASH/Bitbucket+config+properties for available options. Must be a hash, Default: {}
 
@@ -273,7 +273,7 @@ Extra configuration options for bitbucket (bitbucket-config.properties). See htt
 #####`backup_ensure`
 Enable or disable the backup cron job. Defaults to present.
 #####`backupclient_version`
-The version of the backup client to install. Defaults to '1.9.1'
+The version of the backup client to install. Defaults to '2.0.2'
 #####`backup_home`
 Home directory to use for backups. Backups are created here under /archive. Defaults to '/opt/bitbucket-backup'.
 #####`backupuser`
