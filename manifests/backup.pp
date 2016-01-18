@@ -64,7 +64,7 @@ class bitbucket::backup(
         ensure       => present,
         extract      => true,
         extract_path => $backup_home,
-        source       => "${download_url}/${version}/${file}",
+        source       => "${download_url}/${file}",
         user         => $user,
         group        => $group,
         creates      => "${appdir}/lib",
