@@ -1,3 +1,9 @@
+##2015-01-18 - Release 2.0.2 (Bitbucker Server)
+###Summary
+- Resolved issues #1 and #3
+- Updated test cases
+- Merged pull requests
+
 ##2015-11-18 - Release 2.0.1 (Bitbucker Server)
 ###Summary
 - Add Bitbucket Server 4.0+ changes and support.
