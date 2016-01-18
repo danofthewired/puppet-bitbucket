@@ -74,7 +74,7 @@ describe 'bitbucket' do
                 :group         => 'bar',
                 :uid           => 333,
                 :gid           => 444,
-                :download_url  => 'http://downloads.atlassian.com/',
+                :download_url  => 'http://downloads.atlassian.com',
                 :deploy_module => 'staging',
               }
             end
