@@ -44,7 +44,7 @@ class bitbucket::backup(
   }
   
   file { '/var/tmp/downloadurl':
-    content => "${download_url}/${version}/${file}"
+    content => "${download_url}/${version}/${file}",
   }
 
   case $deploy_module {
