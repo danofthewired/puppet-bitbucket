@@ -11,7 +11,7 @@ class bitbucket::backup(
   $backuppass           = $bitbucket::backuppass,
   $version              = $bitbucket::backupclient_version,
   $product              = $bitbucket::product,
-  $format               = $bitbucket::format,
+  $backup_format        = $bitbucket::backup_format,
   $homedir              = $bitbucket::homedir,
   $user                 = $bitbucket::user,
   $group                = $bitbucket::group,
@@ -35,19 +35,23 @@ class bitbucket::backup(
     group  => $group,
   }
 
-  $file = "${product}-backup-distribution-${version}.${format}"
+  $file = "${product}-backup-distribution-${version}.${backup_format}"
 
   file { $appdir:
     ensure => 'directory',
     owner  => $user,
     group  => $group,
   }
+  
+  file { '/var/tmp/downloadurl':
+    content => "${download_url}/${version}/${file}"
+  }
 
   case $deploy_module {
     'staging': {
       require staging
       staging::file { $file:
-        source  => "${download_url}/${file}",
+        source  => "${download_url}/${version}/${file}",
         timeout => 1800,
       } ->
       staging::extract { $file:
@@ -64,7 +68,7 @@ class bitbucket::backup(
         ensure       => present,
         extract      => true,
         extract_path => $backup_home,
-        source       => "${download_url}/${file}",
+        source       => "${download_url}/${version}/${file}",
         user         => $user,
         group        => $group,
         creates      => "${appdir}/lib",
