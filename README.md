@@ -334,3 +334,4 @@ BEAKER_set==centos-64-x64 bundle exec rake beaker
 * Geoff Williams
 * Bruce Morrison
 * Daniel Duwe
+* Brian Carpio

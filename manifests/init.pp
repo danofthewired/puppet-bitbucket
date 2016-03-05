@@ -51,7 +51,8 @@ class bitbucket(
 
   # Backup Settings
   $backup_ensure          = 'present',
-  $backupclient_url       = 'https://marketplace.atlassian.com/download/plugins/com.atlassian.stash.backup.client/version/200000200',
+  $backupclient_url       = 'https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution',
+  $backup_format          = 'zip',
   $backupclient_version   = '2.0.2',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
