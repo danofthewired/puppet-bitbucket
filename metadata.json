@@ -1,6 +1,6 @@
 {
   "name": "thewired-bitbucket",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "thewired",
   "summary": "Install Atlassian Bitbucket",
   "license": "MIT",
@@ -57,16 +57,12 @@
     {
       "name": "puppet/archive",
       "version_requirement": ">= 0.4.4"
-    },      
-    {
-      "name": "yguenane/repoforge",
-      "version_requirement": ">= 0.2.0"
-    }
+    }      
   ],
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": "3.x"
+      "version_requirement": ">=3"
     },
     {
       "name": "puppet",
