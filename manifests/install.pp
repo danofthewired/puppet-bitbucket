@@ -13,7 +13,6 @@ class bitbucket::install(
   $group          = $bitbucket::group,
   $uid            = $bitbucket::uid,
   $gid            = $bitbucket::gid,
-  $repoforge      = $bitbucket::repoforge,
   $download_url   = $bitbucket::download_url,
   $deploy_module  = $bitbucket::deploy_module,
   $dburl          = $bitbucket::dburl,
