@@ -48,6 +48,9 @@ JVM_REQUIRED_ARGS="-Djava.awt.headless=true -Dfile.encoding=${JVM_FILE_ENCODING}
 # the default settings of the Bitbucket user is they are not sufficiently secure.
 #
 # umask 0027
+<% if scope.lookupvar('bitbucket::umask') -%>
+umask <%= scope.lookupvar('bitbucket::umask') %>
+<% end -%>
 
 #-----------------------------------------------------------------------------------
 # JMX

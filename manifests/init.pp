@@ -12,6 +12,7 @@ class bitbucket(
   $jvm_optional = '-XX:-HeapDumpOnOutOfMemoryError',
   $jvm_support_recommended_args = '',
   $java_opts    = '',
+  $umask        = undef,
 
   # Bitbucket Settings
   $version      = '4.2.0',
