@@ -268,6 +268,8 @@ If the bitbucket service is managed outside of puppet the stop_bitbucket paramat
 Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets. 
 #####`config_properties`
 Extra configuration options for bitbucket (bitbucket-config.properties). See https://confluence.atlassian.com/display/STASH/Bitbucket+config+properties for available options. Must be a hash, Default: {}
+#####`umask`
+Specify the umask bitbucket should run with. Defaults to undef, in which case the user account's default umask is left untouched.
 
 ####Backup parameters####
 #####`backup_ensure`
