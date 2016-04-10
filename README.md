@@ -208,9 +208,9 @@ The home directory of bitbucket. Configuration files are stored here. Default: '
 Whether or not this module will manage the bitbucket user and group associated with the install. 
 You must either allow the module to manage both aspects or handle both outside the module. Default: true
 #####`user`
-The user that bitbucket should run as, as well as the ownership of bitbucket related files. Default: 'bitbucket'
+The user that bitbucket should run as, as well as the ownership of bitbucket related files. Default: 'atlbitbucket'
 #####`group`
-The group that bitbucket files should be owned by. Default: 'bitbucket'
+The group that bitbucket files should be owned by. Default: 'atlbitbucket'
 #####`uid`
 Specify a uid of the bitbucket user. Default: undef
 #####`gid`
