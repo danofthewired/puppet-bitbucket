@@ -9,8 +9,8 @@ describe 'bitbucket' do
             facts
           end
           let(:params) do
-              { :manage_backup => false, }
-            end
+            { :manage_backup => false, }
+          end
 
           context 'no install of bitbucket backup client' do
             it 'should not deploy bitbucket backup client' do
