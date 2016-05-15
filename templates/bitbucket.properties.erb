@@ -10,7 +10,7 @@ setup.sysadmin.emailAddress=<%= scope['bitbucket::sysadmin_email'] %>
 <%=   key %>=<%= value %>
 <%- end -%>
 <% end -%>
-jdbc.driver=<%= scope.lookupvar('bitbucket::dbdriver') %>
-jdbc.url=<%= scope.lookupvar('bitbucket::dburl') %>
-jdbc.user=<%= scope.lookupvar('bitbucket::dbuser') %>
-jdbc.password=<%= scope.lookupvar('bitbucket::dbpassword') %>
+<% if scope.lookupvar('bitbucket::dbdriver') -%>jdbc.driver=<%= scope.lookupvar('bitbucket::dbdriver') %><% end %>
+<% if scope.lookupvar('bitbucket::dburl') %>jdbc.url=<%= scope.lookupvar('bitbucket::dburl') %><% end %>
+<% if scope.lookupvar('bitbucket::dbuser') %>jdbc.user=<%= scope.lookupvar('bitbucket::dbuser') %><% end %>
+<% if scope.lookupvar('bitbucket::dbpassword') %>jdbc.password=<%= scope.lookupvar('bitbucket::dbpassword') %><% end %>
