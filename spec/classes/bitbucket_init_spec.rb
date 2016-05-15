@@ -26,7 +26,8 @@ describe 'bitbucket' do
   context 'unsupported operating system' do
     describe 'test class without any parameters on Solaris/Nexenta' do
       let(:facts) do
-        { :osfamily => 'Solaris',
+        {
+          :osfamily => 'Solaris',
           :operatingsystem => 'Nexenta',
           :operatingsystemmajrelease => '7',
         }

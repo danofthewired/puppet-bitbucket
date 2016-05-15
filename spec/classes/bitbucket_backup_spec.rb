@@ -98,9 +98,7 @@ describe 'bitbucket' do
 
           context 'should contain custom backup user and password' do
             let(:params) do
-              { :backupuser => 'myuser',
-                :backuppass => 'mypass',
-              }
+              { :backupuser => 'myuser', :backuppass => 'mypass', }
             end
             it do
               should contain_class('bitbucket').with_backupuser('myuser').with_backuppass('mypass')
@@ -111,9 +109,7 @@ describe 'bitbucket' do
 
           context 'should remove old archives' do
             let(:params) do
-              { :backup_keep_age => '1y',
-                :backup_home     => '/my/backup',
-              }
+              { :backup_keep_age => '1y', :backup_home => '/my/backup', }
             end
             it do
               should contain_tidy('remove_old_archives')

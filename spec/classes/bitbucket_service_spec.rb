@@ -22,9 +22,7 @@ describe 'bitbucket' do
 
           context 'overwriting service params' do
             let(:params) do
-              { :service_ensure => 'stopped',
-                :service_enable => false,
-              }
+              { :service_ensure => 'stopped', :service_enable => false, }
             end
             it do
               should contain_service('bitbucket')

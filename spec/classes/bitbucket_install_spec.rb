@@ -46,9 +46,7 @@ describe 'bitbucket' do
             end
             context 'when a user and group is specified' do
               let(:params) do
-                { :user  => 'mybitbucketuser',
-                  :group => 'mybitbucketgroup'
-                }
+                { :user => 'mybitbucketuser', :group => 'mybitbucketgroup' }
               end
               it { should contain_user('mybitbucketuser') }
               it { should contain_group('mybitbucketgroup') }
@@ -67,7 +65,8 @@ describe 'bitbucket' do
 
           context 'overwriting params' do
             let(:params) do
-              { :version       => BITBUCKET_VERSION,
+              {
+                :version       => BITBUCKET_VERSION,
                 :installdir    => '/custom/bitbucket',
                 :homedir       => '/random/homedir',
                 :user          => 'foo',

@@ -11,7 +11,8 @@ describe 'bitbucket' do
 
           context 'default params' do
             let(:params) do
-              { :javahome    => '/opt/java',
+              {
+                :javahome    => '/opt/java',
                 :version     => '3.7.0',
                 :tomcat_port => '7990',
               }
@@ -65,7 +66,8 @@ describe 'bitbucket' do
 
           context 'bitbucket 3.8.1 with additional bitbucket.properties values' do
             let(:params) do
-              { :version => '3.8.1',
+              {
+                :version => '3.8.1',
                 :config_properties => {
                   'aaaa'   => 'bbbb',
                   'cccc'   => 'dddd',
@@ -82,7 +84,8 @@ describe 'bitbucket' do
 
           context 'bitbucket 3.7.0 with additional bitbucket.properties values' do
             let(:params) do
-              { :version => '3.7.0',
+              {
+                :version => '3.7.0',
                 :config_properties => {
                   'aaaa'   => 'bbbb',
                   'cccc'   => 'dddd',
@@ -99,7 +102,8 @@ describe 'bitbucket' do
 
           context 'proxy settings ' do
             let(:params) do
-              { :version => '3.7.0',
+              {
+                :version => '3.7.0',
                 :proxy   => {
                   'scheme'    => 'https',
                   'proxyName' => 'bitbucket.example.co.za',
@@ -127,7 +131,8 @@ describe 'bitbucket' do
 
           context 'jvm_xms => 1G' do
             let(:params) do
-              { :version => '3.7.0',
+              {
+                :version => '3.7.0',
                 :jvm_xms => '1G',
               }
             end
@@ -139,7 +144,8 @@ describe 'bitbucket' do
 
           context 'jvm_xmx => 4G' do
             let(:params) do
-              { :version => '3.7.0',
+              {
+                :version => '3.7.0',
                 :jvm_xmx => '4G',
               }
             end
@@ -151,7 +157,8 @@ describe 'bitbucket' do
 
           context 'jvm_permgen => 384m' do
             let(:params) do
-              { :version     => '3.7.0',
+              {
+                :version     => '3.7.0',
                 :jvm_permgen => '384m',
               }
             end
@@ -163,7 +170,8 @@ describe 'bitbucket' do
 
           context 'java_opts => "-Dhttp.proxyHost=proxy.example.co.za -Dhttp.proxyPort=8080"' do
             let(:params) do
-              { :version   => '3.7.0',
+              {
+                :version   => '3.7.0',
                 :java_opts => '-Dhttp.proxyHost=proxy.example.co.za -Dhttp.proxyPort=8080',
               }
             end
@@ -175,7 +183,8 @@ describe 'bitbucket' do
 
           context 'context_path => "bitbucket"' do
             let(:params) do
-              { :version      => '3.7.0',
+              {
+                :version      => '3.7.0',
                 :context_path => '/bitbucket',
               }
             end
@@ -187,7 +196,8 @@ describe 'bitbucket' do
 
           context 'tomcat_port => "7991"' do
             let(:params) do
-              { :version     => '3.7.0',
+              {
+                :version     => '3.7.0',
                 :tomcat_port => '7991',
               }
             end
