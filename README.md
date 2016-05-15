@@ -272,6 +272,8 @@ Extra configuration options for bitbucket (bitbucket-config.properties). See htt
 Specify the umask bitbucket should run with. Defaults to undef, in which case the user account's default umask is left untouched.
 
 ####Backup parameters####
+#####`manage_backup`
+Whether to manage installation of backup client or not. Defaults to true.
 #####`backup_ensure`
 Enable or disable the backup cron job. Defaults to present.
 #####`backupclient_version`
