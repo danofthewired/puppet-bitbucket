@@ -32,6 +32,16 @@ lockfile=/var/lock/subsys/$SERVICE
 
 export JAVA_HOME=<%= scope.lookupvar('bitbucket::javahome') %>
 export CATALINA_HOME=<%= scope.lookupvar('bitbucket::webappdir') %>
+export BITBUCKET_HOME=<%= scope.lookupvar('bitbucket::homedir') %>
+export BITBUCKET_USER=<%= scope.lookupvar('bitbucket::user') %>
+
+if [ -z "$BITBUCKET_USER" ] || [ $(id -un) == "$BITBUCKET_USER" ]; then
+    sucmd=""
+elif [ -x "/sbin/runuser" ]; then
+    sucmd="/sbin/runuser ${BITBUCKET_USER}"
+else
+    sucmd="su -u ${BITBUCKET_USER}"
+fi
 
 
 function restart() {
@@ -41,7 +51,7 @@ function restart() {
 
 function stop() {
   echo -n $"Shutting down $SERVICE: "
-  <%= scope.lookupvar('bitbucket::webappdir') %>/bin/stop-bitbucket.sh
+  ${sucmd} <%= scope.lookupvar('bitbucket::webappdir') %>/bin/stop-bitbucket.sh
   RETVAL=$?
   echo
 
@@ -52,7 +62,7 @@ function stop() {
 
 function start() {
   echo -n $"Starting $SERVICE: "
-  <%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
+  ${sucmd} <%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
   RETVAL=$?
   echo
 
