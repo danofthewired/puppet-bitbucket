@@ -1,3 +1,7 @@
+##2016-05-19 - Releasing #2.0.4
+###Summary
+- Merged additional jdbc and backup overrides from pull requests
+
 ##2016-03-05 - Releasing #2.0.3
 ###Summary
 - Merged bug fix for bitbucket backup client
