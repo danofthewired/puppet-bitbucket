@@ -21,6 +21,7 @@ class bitbucket::backup(
   $backup_home          = $bitbucket::backup_home,
   $javahome             = $bitbucket::javahome,
   $keep_age             = $bitbucket::backup_keep_age,
+  $manage_usr_grp       = $bitbucket::manage_usr_grp,
   ) {
 
   if $manage_backup {
@@ -62,7 +63,11 @@ class bitbucket::backup(
           strip   => 1,
           user    => $user,
           group   => $group,
-          require => [ User[$user], File[$appdir] ],
+          require => File[$appdir],
+        }
+
+        if $manage_usr_grp {
+          User[$user] -> Staging::Extract[$file]
         }
       }
       'archive': {
