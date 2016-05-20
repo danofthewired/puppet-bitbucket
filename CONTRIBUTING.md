@@ -35,7 +35,7 @@ By default the tests use a baseline version of Puppet.
 If you have Ruby 2.x or want a specific version of Puppet,
 you must set an environment variable such as:
 
-    export PUPPET_VERSION="~> 4.2.0"
+    export PUPPET_VERSION="~> 4.6.0"
 
 Install the dependencies like so...
 

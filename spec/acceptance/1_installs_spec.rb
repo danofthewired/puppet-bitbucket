@@ -96,10 +96,10 @@ describe 'bitbucket', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')
   end
 
   describe cron do
-    it { should have_entry('0 5 * * * /opt/java/bin/java -Dbitbucket.password="password" -Dbitbucket.user="admin" -Dbitbucket.baseUrl="http://localhost:7990" -Dbitbucket.home=/home/bitbucket -Dbackup.home=/opt/bitbucket-backup/archives -jar /opt/bitbucket-backup/bitbucket-backup-client-2.0.2/bitbucket-backup-client.jar').with_user('bitbucket') }
+    it { should have_entry('0 5 * * * /opt/java/bin/java -Dbitbucket.password="password" -Dbitbucket.user="admin" -Dbitbucket.baseUrl="http://localhost:7990" -Dbitbucket.home=/home/bitbucket -Dbackup.home=/opt/bitbucket-backup/archives -jar /opt/bitbucket-backup/bitbucket-backup-client-3.2.0/bitbucket-backup-client.jar').with_user('bitbucket') }
   end
 
-  describe file('/opt/bitbucket-backup/bitbucket-backup-client-2.0.2/bitbucket-backup-client.jar') do
+  describe file('/opt/bitbucket-backup/bitbucket-backup-client-3.2.0/bitbucket-backup-client.jar') do
     it { should be_file }
     it { should be_owned_by 'bitbucket' }
   end

@@ -1,3 +1,8 @@
+##2016-05-19 - Releasing #2.1.0
+###Summary
+- Fixes to add support for Bitbucket Server 4.6
+- Updated logical defaults to support Bitbucket Server 4.6
+
 ##2016-05-19 - Releasing #2.0.4
 ###Summary
 - Merged additional jdbc and backup overrides from pull requests

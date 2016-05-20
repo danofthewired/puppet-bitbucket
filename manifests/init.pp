@@ -30,7 +30,7 @@ class bitbucket(
   $uid            = undef,
   $gid            = undef,
 
-  # Bitbucket 4.2.0 initialization configurations
+  # Bitbucket 4.6.0 initialization configurations
   $display_name  = 'bitbucket',
   $base_url      = "https://${::fqdn}",
   $license       = '',
