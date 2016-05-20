@@ -1,6 +1,6 @@
 node default {
 
-  $version = '4.2.0'
+  $version = '4.6.0'
 
   include ::java
   include ::git

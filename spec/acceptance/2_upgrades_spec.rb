@@ -11,7 +11,7 @@ end
 # time to install/upgrade/run migration tasks/start
 
 describe 'bitbucket', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
-  it 'upgrades to 4.2.0 with defaults and context /bitbucket1' do
+  it 'upgrades to 4.6.0 with defaults and context /bitbucket1' do
     pp_update = <<-EOS
       if versioncmp($::puppetversion,'3.6.1') >= 0 {
         $allow_virtual_packages = hiera('allow_virtual_packages',false)
@@ -23,7 +23,7 @@ describe 'bitbucket', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')
         default   => '/opt/java',
       }
       class { 'bitbucket':
-        version       => '4.2.0',
+        version       => '4.6.0',
         deploy_module => 'staging',
         download_url   => #{download_url},
         javahome      => $jh,

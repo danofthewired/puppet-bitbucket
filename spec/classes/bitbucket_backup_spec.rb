@@ -10,7 +10,7 @@ describe 'bitbucket' do
           end
 
           context 'install bitbucket backup client with default params' do
-            it 'should deploy bitbucket backup client 2.0.2 from zip' do
+            it 'should deploy bitbucket backup client 3.2.0 from zip' do
               should contain_archive("/tmp/bitbucket-backup-distribution-#{BACKUP_VERSION}.zip")
                 .with('source' => "https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution/#{BACKUP_VERSION}/bitbucket-backup-distribution-#{BACKUP_VERSION}.zip",
                       'extract_path' => '/opt/bitbucket-backup',
