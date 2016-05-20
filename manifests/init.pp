@@ -15,7 +15,7 @@ class bitbucket(
   $umask        = undef,
 
   # Bitbucket Settings
-  $version      = '4.2.0',
+  $version      = '4.6.0',
   $product      = 'bitbucket',
   $format       = 'tar.gz',
   $installdir   = '/opt/bitbucket',
@@ -55,7 +55,7 @@ class bitbucket(
   $backup_ensure          = 'present',
   $backupclient_url       = 'https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution',
   $backup_format          = 'zip',
-  $backupclient_version   = '2.0.2',
+  $backupclient_version   = '3.2.0',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
