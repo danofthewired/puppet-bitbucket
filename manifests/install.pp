@@ -21,7 +21,7 @@ class bitbucket::install(
   ) {
 
   include '::archive'
-  
+
   if $manage_usr_grp {
     #Manage the group in the module
     group { $group:
@@ -78,8 +78,11 @@ class bitbucket::install(
         before  => File[$homedir],
         require => [
           File[$installdir],
-          User[$user],
           File[$webappdir] ],
+      }
+
+      if $manage_usr_grp {
+        User[$user] -> Staging::Extract[$file]
       }
     }
     'archive': {
@@ -97,10 +100,11 @@ class bitbucket::install(
         user            => $user,
         group           => $group,
         before          => File[$webappdir],
-        require         => [
-          File[$installdir],
-          User[$user],
-        ],
+        require         => File[$installdir],
+      }
+
+      if $manage_usr_grp {
+        User[$user] -> Archive["/tmp/${file}"]
       }
     }
     default: {
@@ -109,16 +113,22 @@ class bitbucket::install(
   }
 
   file { $homedir:
-    ensure  => 'directory',
-    owner   => $user,
-    group   => $group,
-    require => User[$user],
-  } ->
+    ensure => 'directory',
+    owner  => $user,
+    group  => $group,
+  }
 
   exec { "chown_${webappdir}":
     command     => "/bin/chown -R ${user}:${group} ${webappdir}",
     refreshonly => true,
-    subscribe   => [ User[$user], File[$webappdir] ],
+    subscribe   => File[$webappdir],
+    require     => File[$homedir],
   }
+
+  if $manage_usr_grp {
+    User[$user] -> File[$homedir]
+    User[$user] ~> Exec["chown_${webappdir}"]
+  }
+
 
 }
