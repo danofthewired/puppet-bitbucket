@@ -95,7 +95,11 @@ class bitbucket::backup(
     }
 
     # Enable Cronjob
-    $backup_cmd = "${java_bin} -Dbitbucket.password=\"${backuppass}\" -Dbitbucket.user=\"${backupuser}\" -Dbitbucket.baseUrl=\"http://localhost:7990\" -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/bitbucket-backup-client.jar"
+    $backup_cmd = "${java_bin} -Dbitbucket.password=\"${backuppass}\"\
+ -Dbitbucket.user=\"${backupuser}\"\
+ -Dbitbucket.baseUrl=\"http://localhost:${bitbucket::tomcat_port}\"\
+ -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
+ -jar ${appdir}/bitbucket-backup-client.jar"
 
     cron { 'Backup Bitbucket':
       ensure  => $ensure,
