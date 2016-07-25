@@ -25,7 +25,7 @@ This is a puppet module to install Atlassian Bitbucket. On-premises source code 
 |Module Version   | Supported Stash/Bitbucket versions  |
 |-----------------|-------------------------------------|
 | 2.1.x           | 4.5.x - 4.6.x                       |
-| 2.0.x           | 4.0.x - 4.4.1                       |
+| 2.0.x           | 4.0.x - 4.4.x                       |
 
 
 ##Module Description
