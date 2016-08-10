@@ -27,7 +27,7 @@ class bitbucket::gc(
 
   include ::bitbucket::params
 
-  if versioncmp($::bitbucket_version, '3.2') < 0 {
+  if versioncmp("${::bitbucket_version}", '3.2') < 0 {
     $shared = ''
   } else {
     $shared = '/shared'
