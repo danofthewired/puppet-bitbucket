@@ -11,7 +11,7 @@ class bitbucket::params {
         $service_file_template   = 'bitbucket/bitbucket.service.erb'
         $service_lockfile        = '/var/lock/subsys/bitbucket'
       } elsif $::operatingsystemmajrelease == '6' {
-        $json_packages           = [ 'rubygem-json', 'ruby-json' ]
+        $json_packages           = [ 'ruby-json', 'rubygem-json' ]
         $service_file_location   = '/etc/init.d/bitbucket'
         $service_file_template   = 'bitbucket/bitbucket.initscript.redhat.erb'
         $service_lockfile        = '/var/lock/subsys/bitbucket'
