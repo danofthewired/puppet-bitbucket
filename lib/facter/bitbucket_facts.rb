@@ -6,8 +6,12 @@ require 'json'
 require 'open-uri'
 
 # get url of bitbucket
-file = File.open("/etc/bitbucket_url.txt", "rb")
-bitbucket_url = file.read
+begin
+  file = File.open("/etc/bitbucket_url.txt", "rb")
+  bitbucket_url = file.read
+rescue
+  exit 0
+end
 begin
   url = 'bitbucket_url'
   info = open(url, &:read)
