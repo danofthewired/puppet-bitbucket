@@ -10,12 +10,14 @@ begin
   file = File.open("/etc/bitbucket_url.txt", "rb")
   bitbucket_url = file.read
 rescue
+  puts "bitbucket_version=0"
   exit 0
 end
 begin
   url = 'bitbucket_url'
   info = open(url, &:read)
 rescue
+  puts "bitbucket_version=0"
   exit 0
 end
 pinfo = JSON.load(info)
