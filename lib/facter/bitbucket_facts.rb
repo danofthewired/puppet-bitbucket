@@ -6,9 +6,13 @@ require 'json'
 require 'open-uri'
 
 # variables
-bitbucket_version_var = '0'
-file_exists = true
-url_read = true
+file_exists  = true
+url_read     = true
+version      = '-1'
+display_name = '-1'
+build_number = '-1'
+build_date   = '-1'
+
 
 # get url of bitbucket
 if File.exist? '/etc/bitbucket_url.txt'
@@ -16,15 +20,17 @@ if File.exist? '/etc/bitbucket_url.txt'
       file = File.open("/etc/bitbucket_url.txt", "rb")
       bitbucket_url = file.read
     rescue
+      puts 'cannot open file'
       file_exists = false
     end
 end
 
 if file_exists
     begin
-      url = 'bitbucket_url'
-      info = open(url, &:read)
+      puts bitbucket_url
+      info = open(bitbucket_url, &:read)
     rescue
+      puts 'cannot open url'
       url_read = false
     end
 end
@@ -34,15 +40,37 @@ if url_read
     pinfo.each do |key, value|
       actual_value = value
       if value.is_a? Array
-	 actual_value = value.join(',')
+         actual_value = value.join(',')
       end
-      #puts "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
-      bitbucket_version_var = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
+      if key.chomp() == 'version'
+          version = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
+      elsif key.chomp() == 'buildNumber'
+          build_number = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
+      elsif key.chomp() == 'displayName'
+          display_name = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
+      elsif key.chomp() == 'buildDate'
+          build_date = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
+      end
     end
 end
 
 Facter.add(:bitbucket_version) do
   setcode do
-    bitbucket_version_var
+    version
+  end
+end
+Facter.add(:bitbucket_displayName) do
+  setcode do
+    display_name
+  end
+end
+Facter.add(:bitbucket_buildNumber) do
+  setcode do
+    build_number
+  end
+end
+Facter.add(:bitbucket_buildDate) do
+  setcode do
+    build_date
   end
 end

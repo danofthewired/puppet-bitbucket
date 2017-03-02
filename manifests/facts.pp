@@ -20,6 +20,7 @@ class bitbucket::facts(
   $uri           = '127.0.0.1',
   $context_path  = $bitbucket::context_path,
   $json_packages = $bitbucket::params::json_packages,
+  $is_https      = false,
 ) inherits bitbucket {
 
   if $::osfamily == 'RedHat' and $::puppetversion !~ /Puppet Enterprise/ {
@@ -28,9 +29,15 @@ class bitbucket::facts(
     }
   }
 
+  if $is_https {
+    $http = 'https://'
+  }else{
+    $http = 'http://'
+  }
+
   file{'/etc/bitbucket_url.txt':
     ensure  => $ensure,
-    content => "http://${uri}:${port}${context_path}/rest/api/1.0/\
+    content => "${http}${uri}:${port}${context_path}/rest/api/1.0/\
 application-properties",
   }
 }
