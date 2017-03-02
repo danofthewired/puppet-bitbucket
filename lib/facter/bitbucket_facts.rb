@@ -20,17 +20,14 @@ if File.exist? '/etc/bitbucket_url.txt'
       file = File.open("/etc/bitbucket_url.txt", "rb")
       bitbucket_url = file.read
     rescue
-      puts 'cannot open file'
       file_exists = false
     end
 end
 
 if file_exists
     begin
-      puts bitbucket_url
       info = open(bitbucket_url, &:read)
     rescue
-      puts 'cannot open url'
       url_read = false
     end
 end
