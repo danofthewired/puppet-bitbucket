@@ -9,6 +9,8 @@ Metrics/LineLength:
   Max: 360
 Metrics/ModuleLength:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 
 # dealbreaker:
 Style/TrailingCommaInLiteral:
