@@ -13,10 +13,10 @@ group :test do
   gem 'puppet-lint-version_comparison-check'
   gem 'puppetlabs_spec_helper'
   gem 'rake'
-  gem 'rubocop'
   gem 'rspec'
   gem 'rspec-puppet', git: 'https://github.com/rodjek/rspec-puppet.git'
   gem 'rspec-puppet-facts'
+  gem 'rubocop'
 end
 
 group :development do
