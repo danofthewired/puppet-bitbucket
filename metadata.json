@@ -1,8 +1,8 @@
 {
   "name": "thewired-bitbucket",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "thewired",
-  "summary": "Install Atlassian Bitbucket",
+  "summary": "Install Atlassian Bitbucket Server",
   "license": "MIT",
   "source": "https://github.com/danofthewired/puppet-bitbucket.git",
   "project_page": "https://github.com/danofthewired/puppet-bitbucket",
