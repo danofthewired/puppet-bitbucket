@@ -3,6 +3,8 @@
 # Defines default values for bitbucket module
 #
 class bitbucket::params {
+  $manage_json_packages = true
+
   case $::osfamily {
     /RedHat/: {
       if $::operatingsystemmajrelease == '7' {

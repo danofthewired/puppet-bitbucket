@@ -15,11 +15,12 @@
 # class { 'bitbucket::facts': }
 #
 class bitbucket::facts(
-  $ensure        = 'present',
-  $port          = '7990',
-  $uri           = '127.0.0.1',
-  $context_path  = $bitbucket::context_path,
-  $json_packages = $bitbucket::params::json_packages,
+  $ensure               = 'present',
+  $port                 = '7990',
+  $uri                  = '127.0.0.1',
+  $context_path         = $bitbucket::context_path,
+  $json_packages        = $bitbucket::params::json_packages,
+  $manage_json_packages = $bitbucket::params::manage_json_packages,
 ) inherits bitbucket {
 
   # Puppet Enterprise supplies its own ruby version if your using it.
@@ -43,9 +44,11 @@ class bitbucket::facts(
     }
   }
 
-  if $::osfamily == 'RedHat' and $::puppetversion !~ /Puppet Enterprise/ {
-    package { $json_packages:
-      ensure => present,
+  if $manage_json_packages {
+    if $::osfamily == 'RedHat' and $::puppetversion !~ /Puppet Enterprise/ {
+      package { $json_packages:
+        ensure => present,
+      }
     }
   }
 
