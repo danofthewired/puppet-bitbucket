@@ -19,6 +19,8 @@ Style/TrailingCommaInArguments:
   Enabled: false
 Style/ClosingParenthesisIndentation:
   Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
 
 # we still support ruby 1.8
 Style/HashSyntax:

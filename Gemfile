@@ -20,7 +20,7 @@ group :test do
 end
 
 group :development do
-  gem 'guard-rake'    
+  gem 'guard-rake'
   gem 'travis'
   gem 'travis-lint'
 end
