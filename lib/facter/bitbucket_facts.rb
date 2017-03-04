@@ -13,42 +13,41 @@ display_name = '-1'
 build_number = '-1'
 build_date   = '-1'
 
-
 # get url of bitbucket
 if File.exist? '/etc/bitbucket_url.txt'
-    begin
-      file = File.open("/etc/bitbucket_url.txt", "rb")
-      bitbucket_url = file.read
-    rescue
-      file_exists = false
-    end
+  begin
+    file = File.open('/etc/bitbucket_url.txt', 'rb')
+    bitbucket_url = file.read
+  rescue
+    file_exists = false
+  end
 end
 
 if file_exists
-    begin
-      info = open(bitbucket_url, &:read)
-    rescue
-      url_read = false
-    end
+  begin
+    info = open(bitbucket_url, &:read)
+  rescue
+    url_read = false
+  end
 end
 
 if url_read
-    pinfo = JSON.load(info)
-    pinfo.each do |key, value|
-      actual_value = value
-      if value.is_a? Array
-         actual_value = value.join(',')
-      end
-      if key.chomp() == 'version'
-          version = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
-      elsif key.chomp() == 'buildNumber'
-          build_number = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
-      elsif key.chomp() == 'displayName'
-          display_name = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
-      elsif key.chomp() == 'buildDate'
-          build_date = "bitbucket_#{key.chomp()}=#{actual_value.chomp}"
-      end
+  pinfo = JSON.parse(info)
+  pinfo.each do |key, value|
+    actual_value = value
+    if value.is_a? Array
+      actual_value = value.join(',')
     end
+    if key.chomp == 'version'
+      version = "bitbucket_#{key.chomp}=#{actual_value.chomp}"
+    elsif key.chomp == 'buildNumber'
+      build_number = "bitbucket_#{key.chomp}=#{actual_value.chomp}"
+    elsif key.chomp == 'displayName'
+      display_name = "bitbucket_#{key.chomp}=#{actual_value.chomp}"
+    elsif key.chomp == 'buildDate'
+      build_date = "bitbucket_#{key.chomp}=#{actual_value.chomp}"
+    end
+  end
 end
 
 Facter.add(:bitbucket_version) do

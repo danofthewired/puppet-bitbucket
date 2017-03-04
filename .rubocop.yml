@@ -7,6 +7,10 @@ AllCops:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Max: 360
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 
 # dealbreaker:
 Style/TrailingCommaInLiteral:
@@ -14,6 +18,8 @@ Style/TrailingCommaInLiteral:
 Style/TrailingCommaInArguments:
   Enabled: false
 Style/ClosingParenthesisIndentation:
+  Enabled: false
+Style/IfUnlessModifier:
   Enabled: false
 
 # we still support ruby 1.8
