@@ -17,9 +17,15 @@ Style/TrailingCommaInLiteral:
   Enabled: false
 Style/TrailingCommaInArguments:
   Enabled: false
-Style/ClosingParenthesisIndentation:
+Layout/ClosingParenthesisIndentation:
   Enabled: false
 Style/IfUnlessModifier:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Style/SymbolArray:
   Enabled: false
 
 # we still support ruby 1.8

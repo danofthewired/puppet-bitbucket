@@ -16,6 +16,10 @@ RUNUSER=<%= scope.lookupvar('bitbucket::user') %>
 BITBUCKET_INSTALLDIR="<%= scope.lookupvar('bitbucket::webappdir') %>"
 # BITBUCKET_HOME: Path to the Bitbucket home directory
 BITBUCKET_HOME="<%= scope.lookupvar('bitbucket::homedir') %>"
+# JAVA_HOME: Path to Java home directory
+export JAVA_HOME=<%= scope.lookupvar('bitbucket::javahome') %>
+# CATALINA_HOME: Path to Catalina home directory
+export CATALINA_HOME=<%= scope.lookupvar('bitbucket::webappdir') %>
 # ==================================================================================
 # ==================================================================================
 # ==================================================================================
@@ -48,7 +52,7 @@ log_end_msg () {
 }
 # Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
 . /lib/lsb/init-functions
- 
+
 run_with_home() {
     if [ "$RUNUSER" != "$USER" ]; then
         su - "$RUNUSER" -c "export BITBUCKET_HOME=${BITBUCKET_HOME};${BITBUCKET_INSTALLDIR}/bin/$1"
@@ -74,7 +78,7 @@ do_stop()
       log_failure_msg "$NAME is not running."
     fi
 }
- 
+
 case "$1" in
   start)
     [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"

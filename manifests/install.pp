@@ -61,6 +61,12 @@ class bitbucket::install(
     }
   }
 
+  if versioncmp($version, '5.0.0') >= 0 {
+    $archve_dir = "${webappdir}"
+  } else {
+    $archve_dir = "${webappdir}/conf"
+  }
+
   case $deploy_module {
     'staging': {
       require staging
@@ -70,7 +76,7 @@ class bitbucket::install(
       } ->
       staging::extract { $file:
         target  => $webappdir,
-        creates => "${webappdir}/conf",
+        creates => $archive_dir,
         strip   => 1,
         user    => $user,
         group   => $group,
@@ -92,7 +98,7 @@ class bitbucket::install(
         extract         => true,
         extract_path    => $installdir,
         source          => "${download_url}/${file}",
-        creates         => "${webappdir}/conf",
+        creates         => $archive_dir,
         cleanup         => true,
         checksum_type   => 'md5',
         checksum        => $checksum,
