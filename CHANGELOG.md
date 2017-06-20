@@ -1,3 +1,7 @@
+##2017-06-20 - Releasing #2.2.0
+###Summary
+- Added support for Bitbucket 5+
+
 ##2017-03-04 - Releasing #2.1.1
 ###Summary
 - Merged outstanding pull requests

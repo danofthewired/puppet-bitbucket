@@ -24,6 +24,7 @@ This is a puppet module to install Atlassian Bitbucket. On-premises source code 
 
 |Module Version   | Supported Stash/Bitbucket versions  |
 |-----------------|-------------------------------------|
+| 2.2.x           | 4.5.x - 5.x.x                       |
 | 2.1.x           | 4.5.x - 4.14.x                      |
 | 2.0.x           | 4.0.x - 4.4.x                       |
 
@@ -207,7 +208,7 @@ The installation directory of the bitbucket binaries. Default: '/opt/bitbucket'
 #####`homedir`
 The home directory of bitbucket. Configuration files are stored here. Default: '/home/bitbucket'
 #####`manage_usr_grp`
-Whether or not this module will manage the bitbucket user and group associated with the install. 
+Whether or not this module will manage the bitbucket user and group associated with the install.
 You must either allow the module to manage both aspects or handle both outside the module. Default: true
 #####`user`
 The user that bitbucket should run as, as well as the ownership of bitbucket related files. Default: 'atlbitbucket'
@@ -267,7 +268,7 @@ Defaults to 'true'
 #####`$stop_bitbucket`
 If the bitbucket service is managed outside of puppet the stop_bitbucket paramater can be used to shut down bitbucket for upgrades. Defaults to 'service bitbucket stop && sleep 15'
 #####`deploy_module`
-Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets. 
+Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets.
 #####`config_properties`
 Extra configuration options for bitbucket (bitbucket-config.properties). See https://confluence.atlassian.com/display/STASH/Bitbucket+config+properties for available options. Must be a hash, Default: {}
 #####`umask`
