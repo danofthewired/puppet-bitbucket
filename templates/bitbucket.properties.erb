@@ -14,3 +14,12 @@ setup.sysadmin.emailAddress=<%= scope['bitbucket::sysadmin_email'] %>
 <% if scope.lookupvar('bitbucket::dburl') %>jdbc.url=<%= scope.lookupvar('bitbucket::dburl') %><% end %>
 <% if scope.lookupvar('bitbucket::dbuser') %>jdbc.user=<%= scope.lookupvar('bitbucket::dbuser') %><% end %>
 <% if scope.lookupvar('bitbucket::dbpassword') %>jdbc.password=<%= scope.lookupvar('bitbucket::dbpassword') %><% end %>
+<% if scope.function_versioncmp([scope['bitbucket::version'], '5.0.0']) >= 0 -%>
+<% if scope.lookupvar('bitbucket::tomcat_port') %>server.port=<%= scope.lookupvar('bitbucket::tomcat_port') %><% end %>
+<% if scope.lookupvar('bitbucket::context_path') %>server.context-path=<%= scope.lookupvar('bitbucket::context_path') %><% end %>
+<%- if @proxy -%>
+<%- @proxy.sort.each do |key,value| -%>
+<%= key %>=<%= value %>
+<%- end -%>
+<%- end -%>
+<% end -%>

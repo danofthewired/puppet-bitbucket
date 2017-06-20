@@ -37,15 +37,27 @@ class bitbucket::config(
     $server_xml = "${bitbucket::webappdir}/conf/server.xml"
   }
 
-  file { "${bitbucket::webappdir}/bin/setenv.sh":
-    content => template('bitbucket/setenv.sh.erb'),
+  if versioncmp($version, '5.0.0') >= 0 {
+    $bitbucket_http_port_ensure = 'absent'
+    $bitbucket_server_xml_ensure = 'absent'
+    $bitbucket_user_script = 'set-bitbucket-user'
+    $bitbucket_startup_script = '_start-webapp'
+  } else {
+    $bitbucket_http_port_ensure = 'present'
+    $bitbucket_server_xml_ensure = 'present'
+    $bitbucket_user_script = 'user'
+    $bitbucket_startup_script = 'setenv'
+  }
+
+  file { "${bitbucket::webappdir}/bin/${bitbucket_startup_script}.sh":
+    content => template("bitbucket/${bitbucket_startup_script}.sh.erb"),
     mode    => '0750',
     require => Class['bitbucket::install'],
     notify  => Class['bitbucket::service'],
   } ->
 
-  file { "${bitbucket::webappdir}/bin/user.sh":
-    content => template('bitbucket/user.sh.erb'),
+  file { "${bitbucket::webappdir}/bin/${bitbucket_user_script}.sh":
+    content => template("bitbucket/${bitbucket_user_script}.sh.erb"),
     mode    => '0750',
     require => [
       Class['bitbucket::install'],
@@ -55,6 +67,7 @@ class bitbucket::config(
   }->
 
   file { $server_xml:
+    ensure  => $bitbucket_server_xml_ensure,
     content => template('bitbucket/server.xml.erb'),
     mode    => '0640',
     require => Class['bitbucket::install'],
@@ -62,7 +75,7 @@ class bitbucket::config(
   } ->
 
   ini_setting { 'bitbucket_httpport':
-    ensure  => present,
+    ensure  => $bitbucket_http_port_ensure,
     path    => "${bitbucket::webappdir}/conf/scripts.cfg",
     section => '',
     setting => 'bitbucket_httpport',
