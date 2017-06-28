@@ -62,9 +62,9 @@ class bitbucket::install(
   }
 
   if versioncmp($version, '5.0.0') >= 0 {
-    $archve_dir = "${webappdir}"
+    $archive_dir = "${webappdir}"
   } else {
-    $archve_dir = "${webappdir}/conf"
+    $archive_dir = "${webappdir}/conf"
   }
 
   case $deploy_module {
