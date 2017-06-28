@@ -6,7 +6,11 @@ After=syslog.target network.target
 Type=forking
 Environment="JAVA_HOME=<%= scope.lookupvar('bitbucket::javahome') %>"
 Environment="BITBUCKET_HOME=<%= scope.lookupvar('bitbucket::homedir') %>"
+<% if scope.function_versioncmp([scope['bitbucket::version'], '5.0.0']) >= 0 -%>
+PIDFile=<%= scope.lookupvar('bitbucket::homedir') %>/log/bitbucket.pid
+<% else -%>
 PIDFile=<%= scope.lookupvar('bitbucket::webappdir') %>/work/catalina.pid
+<% end -%>
 User=<%= scope.lookupvar('bitbucket::user') %>
 ExecStart=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
 ExecStop=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/stop-bitbucket.sh
