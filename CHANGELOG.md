@@ -1,3 +1,7 @@
+##2017-06-29 - Releasing #2.2.1
+###Summary
+- Resolved issues #40 and #41
+
 ##2017-06-20 - Releasing #2.2.0
 ###Summary
 - Added support for Bitbucket 5+
