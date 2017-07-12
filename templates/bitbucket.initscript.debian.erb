@@ -27,7 +27,11 @@ export CATALINA_HOME=<%= scope.lookupvar('bitbucket::webappdir') %>
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Atlassian Bitbucket"
 NAME=bitbucket
+<% if scope.function_versioncmp([scope['bitbucket::version'], '5.0.0']) >= 0 -%>
+PIDFILE=$BITBUCKET_HOME/log/bitbucket.pid
+<% else -%>
 PIDFILE=$BITBUCKET_INSTALLDIR/work/catalina.pid
+<% end -%>
 SCRIPTNAME=/etc/init.d/$NAME
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
