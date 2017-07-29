@@ -73,7 +73,11 @@ function start() {
 
 function status() {
 
-  STATUS=$( ps aux | grep "[c]atalina.base=$CATALINA_HOME" | wc -l )
+<% if scope.function_versioncmp([scope['bitbucket::version'], '5.0.0']) >= 0 -%>
+  STATUS=$( ps aux | grep "com.atlassian.bitbucket.internal.launcher.BitbucketServerLauncher" | wc -l )
+<% else -%>
+  STATUS=$( ps aux | grep "com.atlassian.stash.internal.catalina.startup.Bootstrap" | wc -l )
+<% end -%>
   if [ $STATUS -gt 0 ];then
     ps -ef |grep $SERVICE |grep -v grep |awk '{ print $2 }' | <%= scope.lookupvar('bitbucket::javahome') %>/bin/jps |grep -v Jps |grep -v grep > /dev/null
     RETVAL=$?
@@ -88,7 +92,7 @@ function status() {
     echo "$SERVICE is stopped"
     return 1
  fi
-  
+
 }
 
 function execute() {
