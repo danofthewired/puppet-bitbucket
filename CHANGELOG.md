@@ -1,3 +1,7 @@
+##2017-08-01 - Releasing #2.2.2
+###Summary
+- Resolved issues #43, #45 and #46
+
 ##2017-06-29 - Releasing #2.2.1
 ###Summary
 - Resolved issues #40 and #41
