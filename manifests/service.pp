@@ -25,7 +25,7 @@ class bitbucket::service  (
     validate_string($service_ensure)
     validate_bool($service_enable)
 
-    if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    if ($::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7') or ($::osfamily == 'Debian' and $::operatingsystemmajrelease == '16.04') {
       exec { 'refresh_systemd':
         command     => 'systemctl daemon-reload',
         refreshonly => true,
