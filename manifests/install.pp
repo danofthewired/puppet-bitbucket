@@ -20,8 +20,6 @@ class bitbucket::install(
   $webappdir,
   ) {
 
-  include '::archive'
-
   if $manage_usr_grp {
     #Manage the group in the module
     group { $group:
@@ -92,6 +90,7 @@ class bitbucket::install(
       }
     }
     'archive': {
+      include '::archive'
       $checksum_verify = $checksum ? { undef => false, default => true }
       archive { "/tmp/${file}":
         ensure          => present,
