@@ -1,7 +1,7 @@
 # == Class: bitbucket::service
 #
 # This manages the bitbucket service. See README.md for details
-# 
+#
 class bitbucket::service  (
 
   $service_manage        = $bitbucket::service_manage,
@@ -26,7 +26,7 @@ class bitbucket::service  (
     validate_bool($service_enable)
 
     if ($::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7') or ($::osfamily == 'Debian' and $::operatingsystemmajrelease == '16.04') {
-      exec { 'refresh_systemd':
+      exec { 'bitbucket_refresh_systemd':
         command     => 'systemctl daemon-reload',
         refreshonly => true,
         subscribe   => File[$service_file_location],
