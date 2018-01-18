@@ -43,6 +43,8 @@ This module installs/upgrades Atlassian's Enterprise source code management tool
 
 * Whilst not required, for production use we recommend using nginx/apache as a reverse proxy to Bitbucket. We suggest using the jfryman/nginx puppet module.
 
+* Users of the module are responsible for archive package dependencies for alternative providers and all extraction utilities such as tar, gunzip, bunzip, unzip.
+
 ### What Bitbucket affects
 If installing to an existing Bitbucket instance, it is your responsibility to backup your database. We also recommend that you backup your Bitbucket home directory and that you align your current Bitbucket version with the version you intend to use with puppet Bitbucket module.
 
