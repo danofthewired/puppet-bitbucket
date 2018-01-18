@@ -27,6 +27,12 @@ Style/PercentLiteralDelimiters:
   Enabled: false
 Style/SymbolArray:
   Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/MixinUsage:
+  Enabled: false
+Naming/HeredocDelimiterNaming:
+  Enabled: false
 
 # we still support ruby 1.8
 Style/HashSyntax:
