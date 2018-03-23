@@ -8,6 +8,7 @@ class bitbucket::service  (
   $service_ensure        = $bitbucket::service_ensure,
   $service_enable        = $bitbucket::service_enable,
   $service_file_location = $bitbucket::params::service_file_location,
+  $service_file_mode     = $bitbucket::params::service_file_mode,
   $service_file_template = $bitbucket::params::service_file_template,
   $service_lockfile      = $bitbucket::params::service_lockfile,
 
@@ -17,7 +18,7 @@ class bitbucket::service  (
 
   file { $service_file_location:
     content => template($service_file_template),
-    mode    => '0644',
+    mode    => $service_file_mode,
   }
 
   if $bitbucket::service_manage {
