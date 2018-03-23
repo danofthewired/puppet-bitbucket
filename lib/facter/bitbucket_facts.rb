@@ -25,7 +25,7 @@ end
 
 if file_exists
   begin
-    info = open(bitbucket_url, &:read)
+    info = OpenURI.open_uri(bitbucket_url, &:read)
   rescue
     url_read = false
   end
