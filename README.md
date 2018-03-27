@@ -269,6 +269,8 @@ Should puppet manage this service? Default: true
 Manage the bitbucket service, defaults to 'running'
 ##### `$service_enable`
 Defaults to 'true'
+##### `$service_options`
+Add options to the `start-bitbucket.sh` script. Example: `--no-search`. Defaults to ''.
 ##### `$stop_bitbucket`
 If the bitbucket service is managed outside of puppet the stop_bitbucket paramater can be used to shut down bitbucket for upgrades. Defaults to 'service bitbucket stop && sleep 15'
 ##### `deploy_module`
