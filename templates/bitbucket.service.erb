@@ -12,7 +12,7 @@ PIDFile=<%= scope.lookupvar('bitbucket::homedir') %>/log/bitbucket.pid
 PIDFile=<%= scope.lookupvar('bitbucket::webappdir') %>/work/catalina.pid
 <% end -%>
 User=<%= scope.lookupvar('bitbucket::user') %>
-ExecStart=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
+ExecStart=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh <%= scope.lookupvar('bitbucket::service_options') %>
 ExecStop=<%= scope.lookupvar('bitbucket::webappdir') %>/bin/stop-bitbucket.sh
 
 [Install]

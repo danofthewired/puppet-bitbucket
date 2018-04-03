@@ -67,6 +67,7 @@ class bitbucket(
   $service_manage = true,
   $service_ensure = running,
   $service_enable = true,
+  $service_options = '',
 
   # Reverse https proxy
   $proxy = {},

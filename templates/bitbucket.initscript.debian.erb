@@ -69,7 +69,7 @@ run_with_home() {
 #
 do_start()
 {
-    run_with_home start-bitbucket.sh
+    run_with_home start-bitbucket.sh <%= scope.lookupvar('bitbucket::service_options') %>
 }
 #
 # Function that stops the daemon/service

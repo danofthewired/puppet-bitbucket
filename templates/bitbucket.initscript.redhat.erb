@@ -62,7 +62,7 @@ function stop() {
 
 function start() {
   echo -n $"Starting $SERVICE: "
-  ${sucmd} <%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh
+  ${sucmd} <%= scope.lookupvar('bitbucket::webappdir') %>/bin/start-bitbucket.sh <%= scope.lookupvar('bitbucket::service_options') %>
   RETVAL=$?
   echo
 
