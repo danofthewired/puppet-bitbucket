@@ -37,9 +37,11 @@ This module installs/upgrades Atlassian's Enterprise source code management tool
 <a name="Bitbucket-prerequisites">
 
 ### Bitbucket Prerequisites
-* Bitbucket requires a Java Developers Kit (JDK) or Java Run-time Environment (JRE) platform to be installed on your server's operating system. Oracle JDK / JRE (formerly Sun JDK / JRE)  versions 7 and 8 and Open JDK/ JRE versions 7 and 8 are currently supported by Atlassian.
+* Bitbucket requires a Java Developers Kit (JDK) or Java Run-time Environment (JRE) platform to be installed on your servers operating system. Oracle JDK / JRE (formerly Sun JDK / JRE)  versions 7 and 8 and Open JDK/ JRE versions 7 and 8 are currently supported by Atlassian.
 
 * Bitbucket requires a relational database to store its configuration data. This module currently supports PostgreSQL 8.4 to 9.x and MySQL 5.x. We suggest using puppetlabs-postgresql/puppetlabs-mysql modules to configure/manage the database. The module uses PostgreSQL as a default.
+
+* Bitbucket requires Git to be installed on your servers operating system before it can start the service. puppetlabs/git can be used to manage this installation. Refer to Atlassian documentation to determine what version of Git is supported for different versions of Bitbucket.
 
 * Whilst not required, for production use we recommend using nginx/apache as a reverse proxy to Bitbucket. We suggest using the jfryman/nginx puppet module.
 

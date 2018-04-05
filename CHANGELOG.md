@@ -1,3 +1,7 @@
+##2018-04-05 - Releasing #2.2.5
+###Summary
+- Merged pull requests #55, #56 and #58
+
 ##2018-01-18 - Releasing #2.2.4
 ###Summary
 - Resolved issues #52 and #54
