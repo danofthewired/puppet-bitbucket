@@ -16,11 +16,15 @@ class bitbucket::config(
   # See issue #16 for more detail
   if versioncmp($version, '3.2.0') > 0 {
     $moved = 'shared/'
-    file { "${bitbucket::homedir}/${moved}":
-      ensure  => 'directory',
-      owner   => $user,
-      group   => $group,
-      require => File[$bitbucket::homedir],
+    $shared_dir = "${bitbucket::homedir}/${moved}"
+    # Shared directory may be already defined when installing DataCenter instances (NFS mounted)
+    if ! defined(File[$shared_dir]) {
+      file { $shared_dir:
+        ensure  => 'directory',
+        owner   => $user,
+        group   => $group,
+        require => File[$bitbucket::homedir],
+      }
     }
   } else {
     $moved = undef
