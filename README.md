@@ -66,7 +66,7 @@ This puppet module will automatically download the Bitbucket tar.gz from Atlassi
 
 ```puppet
   class { 'bitbucket':
-    version        => '4.6.0',
+    version        => '5.10.0',
     javahome       => '/opt/java',
     dburl          => 'jdbc:postgresql://bitbucket.example.com:5433/bitbucket',
     dbpassword     => $bitbucketpass,
@@ -84,7 +84,7 @@ Enable a bitbucket backup
 ```puppet
   class { 'bitbucket':
     backup_ensure          => present,
-    backupclient_version    => '3.2.0',
+    backupclient_version    => '3.3.4',
     backup_home            => '/opt/bitbucket-backup',
     backupuser             => 'admin',
     backuppass             => 'password',
@@ -105,7 +105,7 @@ Bitbucket can be upgraded by incrementing this version number. This will *STOP* 
 ```puppet
   class { 'bitbucket':
     javahome => '/opt/java',
-    version  => '4.6.0',
+    version  => '5.10.0',
   }
   class { 'bitbucket::facts': }
 ```
@@ -113,7 +113,7 @@ If the bitbucket service is managed outside of puppet the stop_bitbucket paramat
 ```puppet
   class { 'bitbucket':
     javahome   => '/opt/java',
-    version    => '4.6.0',
+    version    => '5.10.0',
     stop_bitbucket => 'crm resource stop bitbucket && sleep 15',
   }
   class { 'bitbucket::facts': }
@@ -129,7 +129,7 @@ This is especially useful for setting properties such as HTTP/https proxy settin
 
 ```puppet
   class { 'bitbucket':
-    version        => '4.6.0',
+    version        => '5.10.0',
     installdir     => '/opt/atlassian/atlassian-bitbucket',
     homedir        => '/opt/atlassian/application-data/bitbucket-home',
     javahome       => '/opt/java',
@@ -157,7 +157,7 @@ This example is used in production for 500 users in an traditional enterprise en
 
 ```yaml
 # Bitbucket configuration
-bitbucket::version:        '4.6.0'
+bitbucket::version:        '5.10.0'
 bitbucket::installdir:     '/opt/atlassian/atlassian-bitbucket'
 bitbucket::homedir:        '/opt/atlassian/application-data/bitbucket-home'
 bitbucket::javahome:       '/opt/java'
@@ -288,7 +288,7 @@ Whether to manage installation of backup client or not. Defaults to true.
 ##### `backup_ensure`
 Enable or disable the backup cron job. Defaults to present.
 ##### `backupclient_version`
-The version of the backup client to install. Defaults to '3.2.0'
+The version of the backup client to install. Defaults to '3.3.4'
 ##### `backup_home`
 Home directory to use for backups. Backups are created here under /archive. Defaults to '/opt/bitbucket-backup'.
 ##### `backupuser`
@@ -310,10 +310,8 @@ The puppetlabs repositories can be found at:
 http://yum.puppetlabs.com/ and http://apt.puppetlabs.com/
 
 * RedHat / CentOS 5/6/7
-* Ubuntu 12.04 / 14.04
+* Ubuntu 12.04 / 14.04 / 16.04
 * Debian 7
-
-We plan to support other Linux distributions and possibly Windows in the near future.
 
 ## Development
 Please feel free to raise any issues here for bug fixes. We also welcome feature requests. Feel free to make a pull request for anything and we make the effort to review and merge. We prefer with tests if possible.
