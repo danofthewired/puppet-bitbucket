@@ -1,3 +1,8 @@
+##2018-05-19 - Releasing #2.2.6
+###Summary
+- Merged pull request #59
+- Updated default values and examples to use latest versions.
+
 ##2018-04-05 - Releasing #2.2.5
 ###Summary
 - Merged pull requests #55, #56 and #58
