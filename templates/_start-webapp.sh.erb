@@ -29,7 +29,8 @@ JVM_SUPPORT_RECOMMENDED_ARGS="<%= scope.lookupvar('bitbucket::jvm_support_recomm
 # Some installation may require custom env variables (like modifying LD_LIBRARY_PATH)
 #
 <%- scope.lookupvar('bitbucket::additional_env').sort.each do |line| -%>
-    <%= line %>
+<%= line %>
+<% end -%>
 <% end -%>
 
 # The following 2 settings control the minimum and maximum memory allocated to the Java virtual machine.
