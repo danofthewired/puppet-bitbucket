@@ -1,13 +1,13 @@
 {
   "name": "thewired-bitbucket",
-  "version": "2.2.5",
+  "version": "2.2.7",
   "author": "thewired",
   "summary": "Install Atlassian Bitbucket Server",
   "license": "MIT",
   "source": "https://github.com/danofthewired/puppet-bitbucket.git",
   "project_page": "https://github.com/danofthewired/puppet-bitbucket",
   "issues_url": "https://github.com/danofthewired/puppet-bitbucket/issues",
-  "description": "Module to install Atlassian Bitbucket. On-premises source code management for Git that's secure, fast, and enterprise grade.",
+  "description": "Module to install Atlassian Bitbucket Server/Data Center. On-premises source code management for Git that's secure, fast, and enterprise grade.",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -27,13 +27,16 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "12.04",
-        "14.04"
+        "14.04",
+        "16.04"  
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "7"
+        "7",
+        "8",
+        "9"  
       ]
     }
   ],
