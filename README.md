@@ -267,13 +267,13 @@ Where to download the bitbucket binaries from. Default: 'https://downloads.atlas
 The md5 checksum of the archive file. Only supported with `deploy_module => archive`. Defaults to 'undef'
 ##### `service_manage`
 Should puppet manage this service? Default: true
-##### `$service_ensure`
+##### `service_ensure`
 Manage the bitbucket service, defaults to 'running'
-##### `$service_enable`
+##### `service_enable`
 Defaults to 'true'
-##### `$service_options`
+##### `service_options`
 Add options to the `start-bitbucket.sh` script. Example: `--no-search`. Defaults to ''.
-##### `$stop_bitbucket`
+##### `stop_bitbucket`
 If the bitbucket service is managed outside of puppet the stop_bitbucket paramater can be used to shut down bitbucket for upgrades. Defaults to 'service bitbucket stop && sleep 15'
 ##### `deploy_module`
 Module to use for installed bitbucket archive fille. Supports puppet-archive and nanliu-staging. Defaults to 'archive'. Archive supports md5 hash checking, Staging supports s3 buckets.
