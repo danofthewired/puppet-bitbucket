@@ -281,6 +281,8 @@ Module to use for installed bitbucket archive fille. Supports puppet-archive and
 Extra configuration options for bitbucket (bitbucket-config.properties). See https://confluence.atlassian.com/display/STASH/Bitbucket+config+properties for available options. Must be a hash, Default: {}
 ##### `umask`
 Specify the umask bitbucket should run with. Defaults to undef, in which case the user account's default umask is left untouched.
+##### `additionnal_env`
+Add a line in _startup-webapp.sh. Some installations require custom env variables (like modifying LD_LIBRARY_PATH).
 
 #### Backup parameters
 ##### `manage_backup`
