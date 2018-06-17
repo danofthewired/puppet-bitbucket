@@ -13,6 +13,7 @@ class bitbucket(
   $jvm_support_recommended_args = '',
   $java_opts    = '',
   $umask        = undef,
+  $additional_env = undef,
 
   # Bitbucket Settings
   $version      = '5.10.0',

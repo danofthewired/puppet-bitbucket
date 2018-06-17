@@ -55,7 +55,7 @@ describe 'bitbucket', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')
         backupclient_url => #{download_url},
       }
       include ::bitbucket::facts
-  EOS
+    EOS
     apply_manifest(pp, :catch_failures => true)
     sleep 180
     shell 'wget -q --tries=20 --retry-connrefused --read-timeout=10 localhost:7990/bitbucket1'
