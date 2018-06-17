@@ -10,7 +10,7 @@ class bitbucket::params {
       $service_lockfile = '/var/lock/subsys/bitbucket'
 
       if $::operatingsystemmajrelease == '7' {
-        $json_packages = 'rubygem-json'
+        $json_packages = [ 'rubygem-json' ]
       } elsif $::operatingsystemmajrelease == '6' {
         $json_packages         = [ 'ruby-json', 'rubygem-json' ]
       } else {
