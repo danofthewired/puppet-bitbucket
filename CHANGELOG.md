@@ -1,3 +1,7 @@
+##2018-05-19 - Releasing #2.2.8
+###Summary
+- Merged pull request #60 and #61
+
 ##2018-05-19 - Releasing #2.2.7
 ###Summary
 - README
