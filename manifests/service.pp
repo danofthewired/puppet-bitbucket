@@ -16,12 +16,12 @@ class bitbucket::service  (
 
   validate_bool($service_manage)
 
-  file { $service_file_location:
-    content => template($service_file_template),
-    mode    => $service_file_mode,
-  }
-
   if $bitbucket::service_manage {
+
+    file { $service_file_location:
+      content => template($service_file_template),
+      mode    => $service_file_mode,
+    }
 
     validate_string($service_ensure)
     validate_bool($service_enable)
