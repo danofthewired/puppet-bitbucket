@@ -141,9 +141,9 @@ This is especially useful for setting properties such as HTTP/https proxy settin
     jvm_xmx        => '4G',
     java_opts      => '-Dhttp.proxyHost=proxy.example.co.za -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.example.co.za -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=\"localhost|127.0.0.1|172.*.*.*|10.*.*.*|*.example.co.za\"',
     proxy          => {
-      scheme       => 'https',
-      proxyName    => 'bitbucket.example.co.za',
-      proxyPort    => '443',
+      'server.scheme'     => 'https',
+      'server.proxy-name' => 'bitbucket.example.co.za',
+      'server.proxy-port' => '443',
     },
     tomcat_port    => '7991'
   }
@@ -177,9 +177,9 @@ bitbucket::env:
   - 'http_proxy=proxy.example.co.za:8080'
   - 'https_proxy=proxy.example.co.za:8080'
 bitbucket::proxy:
-  scheme:     'https'
-  proxyName:  'bitbucket.example.co.za'
-  proxyPort:  '443'
+  server.scheme:     'https'
+  server.proxy-name:  'bitbucket.example.co.za'
+  server.proxy-port:  '443'
 bitbucket::bitbucket_stop: '/usr/sbin crm resource stop bitbucket'
 ```
 
