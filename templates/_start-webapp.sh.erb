@@ -113,7 +113,7 @@ echo -e "\nStarting Bitbucket webapp at http://localhost:<%= scope.lookupvar('bi
 if [ "$1" == "run" ]; then
     $JAVA_BINARY $JAVA_OPTS $LAUNCHER start --logging.console=true
 else
-    nohup $JAVA_BINARY $JAVA_OPTS $LAUNCHER start >> $BITBUCKET_HOME/log/launcher.log 2>&1 &
+    nohup $JAVA_BINARY $JAVA_OPTS $LAUNCHER start >> <%= scope.lookupvar('bitbucket::logdir') %>/launcher.log 2>&1 &
     echo $! > "$BITBUCKET_HOME/log/bitbucket.pid"
 
     if [ $? -eq 0 ]; then
