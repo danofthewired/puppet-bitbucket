@@ -97,4 +97,13 @@ class bitbucket::config(
       File[$bitbucket::homedir]
     ],
   }
+
+  file { "${bitbucket::webappdir}/app/WEB-INF/classes/logback.xml":
+    content => template('bitbucket/logback.xml.erb'),
+    mode    => '0640',
+    require => [
+      Class['bitbucket::install'],
+      File[$bitbucket::webappdir]
+    ],
+  }
 }
