@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Properties used elsewhere in configuration -->
+
+    <define name="accesslog.format" class="com.atlassian.stash.internal.logback.AccessLogFormatPropertyDefiner"
+            scope="context"/>
+    <define name="home.dir" class="com.atlassian.stash.internal.logback.HomeDirectoryPropertyDefiner"
+            scope="context"/>
+    <define name="log.format" class="com.atlassian.stash.internal.logback.LogFormatPropertyDefiner"
+            scope="context"/>
+    <define name="profilelog.format" class="com.atlassian.stash.internal.logback.ProfileLogFormatPropertyDefiner"
+            scope="context"/>
+
+    <!-- Logging appenders -->
+
+    <if condition='isDefined("home.dir")'>
+        <then>
+            <define name="log.dir" class="com.atlassian.stash.internal.logback.LogDirectoryPropertyDefiner"
+                    scope="context"/>
+
+            <!-- If the home.dir property is defined, it means we have a valid Stash home. Set up appenders that will
+                 produce logging in the configured directory and add them appropriately. -->
+
+            <appender name="bitbucket.application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>${log.format}</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-%d.log</fileNamePattern>
+                    <maxHistory>31</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <appender name="bitbucket.profiler" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>${profilelog.format}</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-profiler.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-profiler-%d.%i.log</fileNamePattern>
+                    <maxFileSize>25MB</maxFileSize>
+                    <maxHistory>3</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <appender name="bitbucket.accesslog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>${accesslog.format}</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-access.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-access-%d.%i.log</fileNamePattern>
+                    <maxFileSize>25MB</maxFileSize>
+                    <maxHistory>10</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <appender name="bitbucket.auditlog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>%m%n</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/audit/atlassian-bitbucket-audit.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/audit/atlassian-bitbucket-audit-%d.%i.log.gz</fileNamePattern>
+                    <maxFileSize>25MB</maxFileSize>
+                    <maxHistory>100</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <appender name="bitbucket.alertlog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>%m%n</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-alerts.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-alerts-%d.log</fileNamePattern>
+                    <maxHistory>31</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <appender name="bitbucket.maillog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>${xpass.log.format}</pattern>
+                </encoder>
+                <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-mail.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-mail-%d.%i.log</fileNamePattern>
+                    <maxFileSize>25MB</maxFileSize>
+                    <maxHistory>10</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <!-- Do not set levels here, only add appenders -->
+            <root>
+                <appender-ref ref="bitbucket.application"/>
+            </root>
+
+            <!-- Enable Atlassian Profiling and direct it to its own separate appender -->
+            <logger name="com.atlassian.util.profiling" level="DEBUG" additivity="false">
+                <appender-ref ref="bitbucket.profiler"/>
+            </logger>
+
+            <!-- Enable access logs and direct it to its own separate appender -->
+            <logger name="bitbucket.access-log" level="INFO" additivity="false">
+                <appender-ref ref="bitbucket.accesslog"/>
+            </logger>
+
+            <!-- Enable audit logs and direct it to its own separate appender -->
+            <logger name="bitbucket.audit-log" level="DEBUG" additivity="false">
+                <appender-ref ref="bitbucket.auditlog"/>
+            </logger>
+
+            <!-- Enable alert logs and direct it to its own separate appender -->
+            <logger name="bitbucket.alert-log" level="INFO" additivity="false">
+                <appender-ref ref="bitbucket.alertlog"/>
+            </logger>
+
+            <!-- Enable mail logs and direct it to its own separate appender -->
+            <logger name="bitbucket.mail-log" level="INFO" additivity="false">
+                <appender-ref ref="bitbucket.maillog"/>
+            </logger>
+
+            <!-- Lastly, give customers the ability to define *their own* logback.xml which will be processed in
+                 addition to this one, giving them the ability to modify logging levels at will without forcing
+                 them to modify Bitbuckets's files directly.
+
+                 WARNING: Do not use ${home.dir}-style property replacement here. Because the returned String is
+                 compiled into Java code by Janino internally, doing so causes backslashes to be removed on Windows
+                 and results in logback.xml not being included even if it is present. Calling property("home.dir")
+                 returns the same value but does so in a way that is safe to be compiled. -->
+            <if condition='new java.io.File(property("home.dir"), "logback.xml").exists()'>
+                <then>
+                    <!-- Do not do the actual import here! Just set a property indicating we want to. That way,
+                         logback.xml in the home directory can change logging levels set in _this_ logback.xml -->
+                    <property name="include.local" value="true"/>
+                </then>
+            </if>
+        </then>
+        <else>
+            <!-- If the log.dir property is not defined, it means there is no Bitbucket home directory. We still want to
+                 have our logging visible, so add it to the console instead. -->
+            <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>${log.format}</pattern>
+                </encoder>
+            </appender>
+
+            <!-- Do not set levels here, only add appenders -->
+            <root>
+                <appender-ref ref="console"/>
+            </root>
+        </else>
+    </if>
+
+    <!-- Following is configuration for different logging levels. Please do *not* setup appenders here. That work
+         should be done above, inside the <if/> directive, so that the correct appenders are added in all cases. -->
+
+    <!-- Configuration for the root logger -->
+
+    <root level="WARN"/>
+
+    <!-- Atlassian logging -->
+
+    <logger name="com.atlassian.bitbucket" level="INFO"/>
+    <logger name="com.atlassian.stash" level="INFO"/>
+    <!-- Reduce Crowd logging -->
+    <logger name="com.atlassian.stash.internal.crowd.HibernateUserDao" level="INFO"/>
+    <!-- Don't log a stacktrace every time a cache if flushed-->
+    <logger name="com.atlassian.cache.stacktrace" level="WARN"/>
+    <!-- Don't log a statement every time a cache is flushed -->
+    <logger name="com.atlassian.cache.event" level="WARN"/>
+    <!-- Workaround for Jira's version of Crowd not supporting incremental sync. See STASH-1932 -->
+    <logger name="com.atlassian.crowd.directory.ldap.cache.EventTokenChangedCacheRefresher" level="ERROR"/>
+    <!-- Show recovery mode info -->
+    <logger name="com.atlassian.crowd.manager.recovery" level="INFO"/>
+    <!-- Remote events can be chatty if hosts are down temporarily -->
+    <logger name="com.atlassian.event.remote" level="ERROR"/>
+    <!-- Reduce warnings about expired OAuth tokens -->
+    <logger name="com.atlassian.oauth.serviceprovider.internal.AuthenticatorImpl" level="ERROR"/>
+    <!-- Disable warnings about empty files and directories while generating support zips. See STASHDEV-970 -->
+    <logger name="com.atlassian.support.tools.salext.bundle.WildcardApplicationFileBundle" level="ERROR"/>
+    <!-- Disable all logging for atlassian-templaterenderer CompositeClassLoader. It does not play well with logback and
+         causes a StackOverflowError. See STASH-1819 -->
+    <logger name="com.atlassian.templaterenderer.velocity.CompositeClassLoader" level="OFF"/>
+    <!-- Disable warnings about system properties not being set; defaults are applied -->
+    <logger name="com.atlassian.plugin.connect.plugin.util.ConfigurationUtils" level="ERROR"/>
+    <!-- GenerateManifestStage in plugins 3.2.9 produces many spurious warnings about manifest headers. A
+         subsequent release will fix the warnings, and then this can be removed. -->
+    <logger name="com.atlassian.plugin.osgi.factory.transform.stage.GenerateManifestStage" level="ERROR"/>
+    <!-- Don't allow the PluginHttpSessionWrapper logging to drop to DEBUG when the rootLogger is set to DEBUG -->
+    <logger name="com.atlassian.plugin.servlet.PluginHttpSessionWrapper" level="INFO"/>
+    <!-- Don't allow the DefaultResourceDependencyResolver logging to drop to DEBUG when the rootLogger is set to DEBUG -->
+    <logger name="com.atlassian.plugin.webresource.DefaultResourceDependencyResolver" level="INFO"/>
+    <!-- Disable warnings like "Create a new selector. Selected is 0, delta = 0" -->
+    <logger name="org.apache.mina.core.service.IoProcessor" level="ERROR"/>
+    <!-- Disable warnings about not finding sshd-version.properties in SSHD 1.2.0 -->
+    <logger name="org.apache.sshd.common.config.VersionProperties" level="ERROR"/>
+    <!-- Disable warnings about unexpected client disconnection. See STASHDEV-8528 and STASHDEV-8445 and STASHDEV-8462 -->
+    <logger name="org.apache.sshd.server.session.ServerSession" level="ERROR"/>
+    <!-- Disable warnings about clients sending incorrect messages through ServerSessionImpl -->
+    <logger name="org.apache.sshd.server.session.ServerSessionImpl" level="ERROR"/>
+    <!-- Disable warnings about tcpip-forward global command not being supported - we don't support it. See STASHDEV-8528 -->
+    <logger name="org.apache.sshd.server.session.ServerConnectionService" level="ERROR"/>
+    <!-- Disable warnings about unexpected winadj channel requests from putty -->
+    <logger name="com.atlassian.bitbucket.internal.ssh.server.ScmHostingChannelSession" level="ERROR"/>
+    <!-- Disable all profiling logging for throttles by default -->
+    <logger name="throttle.profile" level="OFF"/>
+
+    <!-- Other libraries and frameworks -->
+
+    <!-- Suppress uninteresting logging from Hazelcast: STASHDEV-7431 -->
+    <logger name="com.hazelcast.initializer" level="ERROR"/>
+    <!-- Suppress uninteresting logging from Hazelcast: STASHDEV-7802 -->
+    <logger name="com.hazelcast.map.LocalMapStatsProvider" level="ERROR"/>        <!-- Hazelcast 3.3 -->
+    <logger name="com.hazelcast.map.impl.LocalMapStatsProvider" level="ERROR"/>   <!-- Hazelcast 3.4+ -->
+    <!-- Suppress uninteresting logging from httpclient: STASH-2307 -->
+    <logger name="httpclient.wire" level="WARN"/>
+    <!-- Suppress uninteresting logging from Liquibase -->
+    <logger name="liquibase" level="WARN"/>
+    <!-- Suppress uninteresting logging from EhCache -->
+    <logger name="net.sf.ehcache" level="WARN"/>
+    <!-- Suppress noisy logging from HttpClient: FUSE-1411 -->
+    <logger name="org.apache.commons.httpclient" level="ERROR"/>
+    <!-- Suppress uninteresting logging from velocity -->
+    <logger name="org.apache.velocity" level="INFO"/>
+    <!-- Suppress uninteresting logging from Hibernate -->
+    <logger name="org.hibernate" level="WARN"/>
+    <!-- Crowd uses positional HQL, so for the moment warnings about that must be suppressed. -->
+    <logger name="org.hibernate.hql.internal.ast.HqlSqlWalker" level="ERROR"/>
+    <!-- HOT-31132, PENG-689, SSP-8376 Suppress Hibernate session statistics, which otherwise get logged when
+         customers enable debug logging. Hibernate statistics produce so much logging they rapidly fill up
+         the disk when they're enabled. -->
+    <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="OFF"/>
+    <logger name="org.hibernate.orm.deprecation" level="ERROR"/>
+    <!-- Something in how pull requests map users triggers periodic spam like this:
+           2014-07-25 02:10:04,062 WARN  [AtlassianEvent::pool-3-thread-1] jdoe @1OKN9Q9x130x1146163x2 jzju9i 127.0.0.1
+           "PUT /rest/api/latest/projects/KEY/repos/slug/pull-requests/787 HTTP/1.1" o.h.p.p.b.ByteBuddyInterceptor
+           HHH000179: Narrowing proxy to class com.atlassian.stash.internal.user.InternalNormalUser - this operation breaks ==
+         We don't use == to compare objects, so there's little danger. This suppresses that warning. -->
+    <logger name="org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor" level="ERROR"/>
+    <!-- Newer versions of Hibernate can also trigger narrowing warnings from StatefulPersistenceContext:
+           2014-09-29 00:02:48,609 WARN  [AtlassianEvent::thread-5] jdoe *Z0TUGAx486x203x1 1lc7k0e 127.0.0.1
+           SSH - git-receive-pack '/key/slug.git' o.h.e.i.StatefulPersistenceContext
+           HHH000179: Narrowing proxy to class com.atlassian.stash.internal.user.InternalNormalUser - this operation breaks ==
+         This suppresses that location as well. -->
+    <logger name="org.hibernate.engine.internal.StatefulPersistenceContext" level="ERROR"/>
+    <!-- Suppress uninteresting logging from Spring -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.beans.factory.config.PropertiesFactoryBean" level="ERROR"/>
+    <logger name="org.springframework.beans.TypeConverterDelegate" level="ERROR"/>
+    <logger name="org.springframework.boot.SpringApplication" level="INFO"/>
+    <logger name="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl" level="OFF"/>
+    <!-- So that we don't get log messages for 404 Not Found conditions -->
+    <logger name="org.springframework.web.servlet.PageNotFound" level="OFF"/>
+    <!-- Suppress uninteresting logging from TWData -->
+    <logger name="org.twdata" level="ERROR"/>
+    <!-- H2 commits the sin of ERROR logging + throwing an exception. It does not support Statement.isWrapperFor and
+         ERROR logs every time Hibernate tries to read anything from a result set. Hibernate handles this
+         gracefully, but the logs fill up with unnecessary spam. Until we can upgrade H2, we have no option but to
+         disable all H2 logging. Any real errors will bubble up and be logged appropriately. -->
+    <logger name="h2database" level="OFF"/>
+
+    <!-- If we decided that we should include logback.xml from the home directory, do so here. -->
+    <if condition='isDefined("include.local")'>
+        <then>
+            <include file="${home.dir}/logback.xml"/>
+        </then>
+    </if>
+</configuration>

@@ -1,0 +1,16 @@
+cluster.name: bitbucket_search
+node:
+  name: bitbucket_bundled
+
+network.host: _local_
+
+path:
+  logs: <%= scope.lookupvar('bitbucket::logdir') %>
+  data: ${BITBUCKET_HOME}/shared/search/data
+
+action.auto_create_index: false
+
+http.port: 7992
+http.type: buckler
+transport.tcp.port: 7993
+transport.type: buckler

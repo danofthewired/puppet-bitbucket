@@ -8,6 +8,7 @@ class bitbucket::install(
   $format         = $bitbucket::format,
   $installdir     = $bitbucket::installdir,
   $homedir        = $bitbucket::homedir,
+  $logdir         = $bitbucket::logdir,
   $manage_usr_grp = $bitbucket::manage_usr_grp,
   $user           = $bitbucket::user,
   $group          = $bitbucket::group,
@@ -118,6 +119,12 @@ class bitbucket::install(
   }
 
   file { $homedir:
+    ensure => 'directory',
+    owner  => $user,
+    group  => $group,
+  }
+
+  file { $logdir:
     ensure => 'directory',
     owner  => $user,
     group  => $group,

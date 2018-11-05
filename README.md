@@ -213,6 +213,8 @@ The format of the file bitbucket will be installed from. Default: 'tar.gz'
 The installation directory of the bitbucket binaries. Default: '/opt/bitbucket'
 ##### `homedir`
 The home directory of bitbucket. Configuration files are stored here. Default: '/home/bitbucket'
+##### `logdir`
+The directory where all lof files are stored. Default: '/var/log/bitbucket'
 ##### `manage_usr_grp`
 Whether or not this module will manage the bitbucket user and group associated with the install.
 You must either allow the module to manage both aspects or handle both outside the module. Default: true

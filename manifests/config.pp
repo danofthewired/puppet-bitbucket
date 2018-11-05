@@ -97,4 +97,22 @@ class bitbucket::config(
       File[$bitbucket::homedir]
     ],
   }
+
+  file { "${bitbucket::webappdir}/elasticsearch/config-template/elasticsearch.yml":
+    content => template('bitbucket/elasticsearch.yml.erb'),
+    mode    => '0640',
+    require => [
+      Class['bitbucket::install'],
+      File[$bitbucket::webappdir],
+    ],
+  }
+
+  file { "${bitbucket::webappdir}/app/WEB-INF/classes/logback.xml":
+    content => template('bitbucket/logback.xml.erb'),
+    mode    => '0640',
+    require => [
+      Class['bitbucket::install'],
+      File[$bitbucket::webappdir]
+    ],
+  }
 }
