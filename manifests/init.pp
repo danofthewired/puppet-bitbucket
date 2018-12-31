@@ -23,6 +23,7 @@ class bitbucket(
   $homedir      = '/home/bitbucket',
   $context_path = '',
   $tomcat_port  = 7990,
+  $tomcat_ssl   = false,
   $logdir       = '/var/log/bitbucket',
 
   # User and Group Management Settings
@@ -61,9 +62,12 @@ class bitbucket(
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
+  $backup_schedule_day    = '1-5',  
   $backup_schedule_hour   = '5',
   $backup_schedule_minute = '0',
   $backup_keep_age        = '4w',
+  $backup_base_url        = "http://localhost:${bitbucket::tomcat_port}", 
+  $backup_keystore        = "${bitbucket::homedir}/shared/config/ssl-keystore",
 
   # Manage service
   $service_manage = true,

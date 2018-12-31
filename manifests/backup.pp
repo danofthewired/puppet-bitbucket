@@ -6,6 +6,7 @@
 class bitbucket::backup(
   $manage_backup        = $bitbucket::manage_backup,
   $ensure               = $bitbucket::backup_ensure,
+  $schedule_weekday     = $bitbucket::backup_schedule_day,
   $schedule_hour        = $bitbucket::backup_schedule_hour,
   $schedule_minute      = $bitbucket::backup_schedule_minute,
   $backupuser           = $bitbucket::backupuser,
@@ -95,18 +96,28 @@ class bitbucket::backup(
     }
 
     # Enable Cronjob
-    $backup_cmd = "${java_bin} -Dbitbucket.password='${backuppass}'\
- -Dbitbucket.user=\"${backupuser}\"\
- -Dbitbucket.baseUrl=\"http://localhost:${bitbucket::tomcat_port}\"\
- -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
- -jar ${appdir}/bitbucket-backup-client.jar"
+    if $bitbucket::tomcat_ssl {
+        $backup_cmd = "${java_bin} -Djavax.net.ssl.trustStore=/datadrive/atlassian/application-data/bitbucket/shared/config/ssl-keystore\
+     -Dbitbucket.password='${backuppass}'\
+     -Dbitbucket.user=\"${backupuser}\"\
+     -Dbitbucket.baseUrl=\"${backup_base_url}\"\
+     -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
+     -jar ${appdir}/bitbucket-backup-client.jar"
+    }
+    else {
+        $backup_cmd = "${java_bin} -Dbitbucket.password='${backuppass}'\
+     -Dbitbucket.user=\"${backupuser}\"\${backup_base_url}     -Dbitbucket.baseUrl=\"${backup_base_url}\"\
+     -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
+     -jar ${appdir}/bitbucket-backup-client.jar"
+    }
 
     cron { 'Backup Bitbucket':
       ensure  => $ensure,
       command => $backup_cmd,
       user    => $user,
-      hour    => $schedule_hour,
+      hour    => $schedule_hour,$backup_base_url}
       minute  => $schedule_minute,
+      weekday => $schedule_weekday,
     }
 
     tidy { 'remove_old_archives':
