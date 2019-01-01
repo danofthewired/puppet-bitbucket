@@ -9,6 +9,7 @@ class bitbucket::backup(
   $schedule_weekday     = $bitbucket::backup_schedule_day,
   $schedule_hour        = $bitbucket::backup_schedule_hour,
   $schedule_minute      = $bitbucket::backup_schedule_minute,
+  $backup_base_url      = $bitbucket::backup_base_url,
   $backupuser           = $bitbucket::backupuser,
   $backuppass           = $bitbucket::backuppass,
   $version              = $bitbucket::backupclient_version,
@@ -106,7 +107,8 @@ class bitbucket::backup(
     }
     else {
         $backup_cmd = "${java_bin} -Dbitbucket.password='${backuppass}'\
-     -Dbitbucket.user=\"${backupuser}\"\${backup_base_url}     -Dbitbucket.baseUrl=\"${backup_base_url}\"\
+     -Dbitbucket.user=\"${backupuser}\"\
+     -Dbitbucket.baseUrl=\"${backup_base_url}\"\
      -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
      -jar ${appdir}/bitbucket-backup-client.jar"
     }
@@ -115,7 +117,7 @@ class bitbucket::backup(
       ensure  => $ensure,
       command => $backup_cmd,
       user    => $user,
-      hour    => $schedule_hour,$backup_base_url}
+      hour    => $schedule_hour,
       minute  => $schedule_minute,
       weekday => $schedule_weekday,
     }
