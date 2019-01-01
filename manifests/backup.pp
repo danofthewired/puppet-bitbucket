@@ -98,7 +98,7 @@ class bitbucket::backup(
 
     # Enable Cronjob
     if $bitbucket::tomcat_ssl {
-        $backup_cmd = "${java_bin} -Djavax.net.ssl.trustStore=/datadrive/atlassian/application-data/bitbucket/shared/config/ssl-keystore\
+        $backup_cmd = "${java_bin} -Djavax.net.ssl.trustStore=${homedir}/shared/config/ssl-keystore\
      -Dbitbucket.password='${backuppass}'\
      -Dbitbucket.user=\"${backupuser}\"\
      -Dbitbucket.baseUrl=\"${backup_base_url}\"\
