@@ -66,7 +66,7 @@ class bitbucket(
   $backup_schedule_hour   = '5',
   $backup_schedule_minute = '0',
   $backup_keep_age        = '4w',
-  $backup_base_url        = "http://localhost:${bitbucket::tomcat_port}", 
+  $backup_base_url        = "${bitbucket::base_url}",
   $backup_keystore        = "${bitbucket::homedir}/shared/config/ssl-keystore",
 
   # Manage service
