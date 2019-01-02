@@ -98,7 +98,7 @@ class bitbucket::backup(
 
     # Enable Cronjob
     if $bitbucket::tomcat_ssl {
-        $backup_cmd = "${java_bin} -Djavax.net.ssl.trustStore=${homedir}/shared/config/ssl-keystore -Dbitbucket.password='${backuppass}' -Dbitbucket.user='${backupuser}'' -Dbitbucket.baseUrl='${backup_base_url}' -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/bitbucket-backup-client.jar"
+        $backup_cmd = "${java_bin} -Djavax.net.ssl.trustStore=${homedir}/shared/config/ssl-keystore -Dbitbucket.password='${backuppass}' -Dbitbucket.user='${backupuser}' -Dbitbucket.baseUrl='${backup_base_url}' -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/bitbucket-backup-client.jar"
     }
     else {
         $backup_cmd = "${java_bin} -Dbitbucket.password='${backuppass}' -Dbitbucket.user='${backupuser}' -Dbitbucket.baseUrl='${backup_base_url}' -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -jar ${appdir}/bitbucket-backup-client.jar"
