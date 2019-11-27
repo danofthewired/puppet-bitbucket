@@ -16,14 +16,16 @@ class bitbucket(
   $additional_env = undef,
 
   # Bitbucket Settings
-  $version      = '5.10.0',
-  $product      = 'bitbucket',
-  $format       = 'tar.gz',
-  $installdir   = '/opt/bitbucket',
-  $homedir      = '/home/bitbucket',
-  $context_path = '',
-  $tomcat_port  = 7990,
-  $logdir       = "${homedir}/log",
+  $version        = '5.10.0',
+  $product        = 'bitbucket',
+  $format         = 'tar.gz',
+  $installdir     = '/opt/bitbucket',
+  $homedir        = '/home/bitbucket',
+  $context_path   = '',
+  $tomcat_port    = 7990,
+  $logdir         = "${homedir}/log",
+  $log_maxhistory = '31', # days
+  $log_maxsize    = '25MB',
 
   # User and Group Management Settings
   $manage_usr_grp = true,
