@@ -23,7 +23,7 @@ class bitbucket(
   $homedir      = '/home/bitbucket',
   $context_path = '',
   $tomcat_port  = 7990,
-  $logdir       = '/var/log/bitbucket',
+  $logdir       = "${homedir}/log",
 
   # User and Group Management Settings
   $manage_usr_grp = true,

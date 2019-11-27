@@ -5,7 +5,7 @@ node:
 network.host: _local_
 
 path:
-  logs: <%= scope.lookupvar('bitbucket::logdir') %>
+  logs: <%= scope.lookupvar('bitbucket::logdir') %>/search
   data: ${BITBUCKET_HOME}/shared/search/data
 
 action.auto_create_index: false
