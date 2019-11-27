@@ -87,7 +87,7 @@
             <appender name="bitbucket.maillog" class="ch.qos.logback.core.rolling.RollingFileAppender">
                 <encoder>
                     <charset>UTF-8</charset>
-                    <pattern>${xpass.log.format}</pattern>
+                    <pattern>${log.format}</pattern>
                 </encoder>
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-mail.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
