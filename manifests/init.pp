@@ -52,6 +52,9 @@ class bitbucket(
   $hazelcast_network = undef,
   $hazelcast_group_name = undef,
   $hazelcast_group_password = undef,
+  $elasticsearch_baseurl = undef,
+  $elasticsearch_username = undef,
+  $elasticsearch_password = undef,
 
   # Misc Settings
   $download_url  = 'https://downloads.atlassian.com/software/stash/downloads',

@@ -30,3 +30,9 @@ hazelcast.network.tcpip.members=<%= scope.lookupvar('bitbucket::hazelcast_networ
 <%- end -%>
 <%- if scope.lookupvar('bitbucket::hazelcast_group_password') -%>hazelcast.group.password=<%= scope.lookupvar('bitbucket::hazelcast_group_password') %>
 <%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_baseurl') -%>plugin.search.elasticsearch.baseurl=<%= scope.lookupvar('bitbucket::elasticsearch_baseurl') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_username') -%>plugin.search.elasticsearch.username=<%= scope.lookupvar('bitbucket::elasticsearch_username') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_password') -%>plugin.search.elasticsearch.password=<%= scope.lookupvar('bitbucket::elasticsearch_password') %>
+<%- end -%>
