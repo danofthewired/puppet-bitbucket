@@ -17,13 +17,22 @@ setup.sysadmin.emailAddress=<%= scope['bitbucket::sysadmin_email'] %>
 <% if scope.function_versioncmp([scope['bitbucket::version'], '5.0.0']) >= 0 -%>
 <% if scope.lookupvar('bitbucket::tomcat_port') %>server.port=<%= scope.lookupvar('bitbucket::tomcat_port') %><% end %>
 <% if scope.lookupvar('bitbucket::context_path') %>server.context-path=<%= scope.lookupvar('bitbucket::context_path') %><% end %>
-<%- if scope.lookupvar('bitbucket::hazelcast_network') -%>hazelcast.network.tcpip=true
-hazelcast.network.tcpip.members=<%= scope.lookupvar('bitbucket::hazelcast_network') %><%- end -%>
-<%- if scope.lookupvar('bitbucket::hazelcast_group_name') -%>hazelcast.group.name=<%= scope.lookupvar('bitbucket::hazelcast_group_name') %><%- end -%>
-<%- if scope.lookupvar('bitbucket::hazelcast_group_password') -%>hazelcast.group.password=<%= scope.lookupvar('bitbucket::hazelcast_group_password') %><%- end -%>
 <%- if @proxy -%>
 <%- @proxy.sort.each do |key,value| -%>
 <%= key %>=<%= value %>
 <%- end -%>
 <%- end -%>
 <% end -%>
+<%- if scope.lookupvar('bitbucket::hazelcast_network') -%>hazelcast.network.tcpip=true
+hazelcast.network.tcpip.members=<%= scope.lookupvar('bitbucket::hazelcast_network') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::hazelcast_group_name') -%>hazelcast.group.name=<%= scope.lookupvar('bitbucket::hazelcast_group_name') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::hazelcast_group_password') -%>hazelcast.group.password=<%= scope.lookupvar('bitbucket::hazelcast_group_password') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_baseurl') -%>plugin.search.elasticsearch.baseurl=<%= scope.lookupvar('bitbucket::elasticsearch_baseurl') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_username') -%>plugin.search.elasticsearch.username=<%= scope.lookupvar('bitbucket::elasticsearch_username') %>
+<%- end -%>
+<%- if scope.lookupvar('bitbucket::elasticsearch_password') -%>plugin.search.elasticsearch.password=<%= scope.lookupvar('bitbucket::elasticsearch_password') %>
+<%- end -%>
