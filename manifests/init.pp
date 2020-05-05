@@ -23,6 +23,7 @@ class bitbucket(
   $homedir      = '/home/bitbucket',
   $context_path = '',
   $tomcat_port  = 7990,
+  $tomcat_ssl   = false,
   $logdir       = '/var/log/bitbucket',
 
   # User and Group Management Settings
@@ -49,7 +50,7 @@ class bitbucket(
   $dbdriver     = 'org.postgresql.Driver',
 
   # Misc Settings
-  $download_url  = 'https://downloads.atlassian.com/software/stash/downloads',
+  $download_url  = 'https://product-downloads.atlassian.com/software/stash/downloads',
   $checksum     = undef,
 
   # Backup Settings
@@ -61,9 +62,12 @@ class bitbucket(
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
+  $backup_schedule_day    = '1-5',  
   $backup_schedule_hour   = '5',
   $backup_schedule_minute = '0',
   $backup_keep_age        = '4w',
+  $backup_base_url        = "${bitbucket::base_url}",
+  $backup_keystore        = "${bitbucket::homedir}/shared/config/ssl-keystore",
 
   # Manage service
   $service_manage = true,
