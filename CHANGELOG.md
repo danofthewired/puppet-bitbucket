@@ -1,3 +1,8 @@
+##2020-05-14 - Releasing #2.3.0
+###Summary
+- Support for Bitbucket 7
+- Improved Bitbucket Backup
+
 ##2018-05-19 - Releasing #2.2.8
 ###Summary
 - Merged pull request #60 and #61
