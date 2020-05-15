@@ -1,6 +1,6 @@
 {
   "name": "thewired-bitbucket",
-  "version": "2.2.8",
+  "version": "2.3.0",
   "author": "thewired",
   "summary": "Install Atlassian Bitbucket Server",
   "license": "MIT",
@@ -28,7 +28,9 @@
       "operatingsystemrelease": [
         "12.04",
         "14.04",
-        "16.04"  
+        "16.04",
+        "17.04",
+        "18.04"
       ]
     },
     {
@@ -65,7 +67,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=3.4.0 < 6.0.0"
+      "version_requirement": ">=5.5.10 < 7.0.0"
     }
   ]
 }

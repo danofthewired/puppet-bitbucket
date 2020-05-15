@@ -29,7 +29,7 @@
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-%d.log</fileNamePattern>
-                    <maxHistory>31</maxHistory>
+		    <maxHistory><%= scope.lookupvar('bitbucket::log_maxhistory') %></maxHistory>
                 </rollingPolicy>
             </appender>
 
@@ -41,7 +41,7 @@
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-profiler.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-profiler-%d.%i.log</fileNamePattern>
-                    <maxFileSize>25MB</maxFileSize>
+		    <maxFileSize><%= scope.lookupvar('bitbucket::log_maxsize') %></maxFileSize>
                     <maxHistory>3</maxHistory>
                 </rollingPolicy>
             </appender>
@@ -54,7 +54,7 @@
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-access.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-access-%d.%i.log</fileNamePattern>
-                    <maxFileSize>25MB</maxFileSize>
+		    <maxFileSize><%= scope.lookupvar('bitbucket::log_maxsize') %></maxFileSize>
                     <maxHistory>10</maxHistory>
                 </rollingPolicy>
             </appender>
@@ -67,7 +67,7 @@
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/audit/atlassian-bitbucket-audit.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/audit/atlassian-bitbucket-audit-%d.%i.log.gz</fileNamePattern>
-                    <maxFileSize>25MB</maxFileSize>
+		    <maxFileSize><%= scope.lookupvar('bitbucket::log_maxsize') %></maxFileSize>
                     <maxHistory>100</maxHistory>
                 </rollingPolicy>
             </appender>
@@ -80,19 +80,19 @@
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-alerts.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-alerts-%d.log</fileNamePattern>
-                    <maxHistory>31</maxHistory>
+		    <maxHistory><%= scope.lookupvar('bitbucket::log_maxhistory') %></maxHistory>
                 </rollingPolicy>
             </appender>
 
             <appender name="bitbucket.maillog" class="ch.qos.logback.core.rolling.RollingFileAppender">
                 <encoder>
                     <charset>UTF-8</charset>
-                    <pattern>${xpass.log.format}</pattern>
+                    <pattern>${log.format}</pattern>
                 </encoder>
                 <file><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-mail.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                     <fileNamePattern><%= scope.lookupvar('bitbucket::logdir') %>/atlassian-bitbucket-mail-%d.%i.log</fileNamePattern>
-                    <maxFileSize>25MB</maxFileSize>
+		    <maxFileSize><%= scope.lookupvar('bitbucket::log_maxsize') %></maxFileSize>
                     <maxHistory>10</maxHistory>
                 </rollingPolicy>
             </appender>

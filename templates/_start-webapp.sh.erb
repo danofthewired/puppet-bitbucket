@@ -125,7 +125,7 @@ else
     if [ $? -eq 0 ]; then
         echo -e "The Bitbucket webapp has been started.\n"
         echo "If you cannot access Bitbucket within 3 minutes, or encounter other issues, check the troubleshooting guide at:"
-        echo "https://confluence.atlassian.com/display/BitbucketServerKB/Troubleshooting+Installation"
+        echo "http://go.atlassian.com/bbs-troubleshooting-installations"
     else
         if [ -f "$BITBUCKET_HOME/log/bitbucket.pid" ]; then
             # If the application failed to start, remove the PID file
