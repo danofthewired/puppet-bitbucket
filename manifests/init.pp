@@ -49,6 +49,14 @@ class bitbucket(
   $dburl        = 'jdbc:postgresql://localhost:5432/bitbucket',
   $dbdriver     = 'org.postgresql.Driver',
 
+  # Data Center Settings
+  $hazelcast_network = undef,
+  $hazelcast_group_name = undef,
+  $hazelcast_group_password = undef,
+  $elasticsearch_baseurl = undef,
+  $elasticsearch_username = undef,
+  $elasticsearch_password = undef,
+
   # Misc Settings
   $download_url  = 'https://product-downloads.atlassian.com/software/stash/downloads',
   $checksum     = undef,
