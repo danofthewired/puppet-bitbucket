@@ -3,9 +3,10 @@ node:
   name: bitbucket_bundled
 
 network.host: _local_
+discovery.type: single-node
 
 path:
-  logs: <%= scope.lookupvar('bitbucket::logdir') %>
+  logs: <%= scope.lookupvar('bitbucket::logdir') %>/search
   data: ${BITBUCKET_HOME}/shared/search/data
 
 action.auto_create_index: false
