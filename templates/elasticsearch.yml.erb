@@ -3,6 +3,7 @@ node:
   name: bitbucket_bundled
 
 network.host: _local_
+discovery.type: single-node
 
 path:
   logs: <%= scope.lookupvar('bitbucket::logdir') %>/search

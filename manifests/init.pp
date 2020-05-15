@@ -16,13 +16,14 @@ class bitbucket(
   $additional_env = undef,
 
   # Bitbucket Settings
-  $version        = '5.10.0',
+  $version        = '7.2.2',
   $product        = 'bitbucket',
   $format         = 'tar.gz',
   $installdir     = '/opt/bitbucket',
   $homedir        = '/home/bitbucket',
   $context_path   = '',
   $tomcat_port    = 7990,
+  $tomcat_ssl     = false, 
   $logdir         = "${homedir}/log",
   $log_maxhistory = '31', # days
   $log_maxsize    = '25MB',
@@ -50,8 +51,16 @@ class bitbucket(
   $dburl        = 'jdbc:postgresql://localhost:5432/bitbucket',
   $dbdriver     = 'org.postgresql.Driver',
 
+  # Data Center Settings
+  $hazelcast_network = undef,
+  $hazelcast_group_name = undef,
+  $hazelcast_group_password = undef,
+  $elasticsearch_baseurl = undef,
+  $elasticsearch_username = undef,
+  $elasticsearch_password = undef,
+
   # Misc Settings
-  $download_url  = 'https://downloads.atlassian.com/software/stash/downloads',
+  $download_url  = 'https://product-downloads.atlassian.com/software/stash/downloads',
   $checksum     = undef,
 
   # Backup Settings
@@ -59,13 +68,16 @@ class bitbucket(
   $backup_ensure          = 'present',
   $backupclient_url       = 'https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution',
   $backup_format          = 'zip',
-  $backupclient_version   = '3.3.4',
+  $backupclient_version   = '5.6.0',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
+  $backup_schedule_day    = '1-5',  
   $backup_schedule_hour   = '5',
   $backup_schedule_minute = '0',
   $backup_keep_age        = '4w',
+  $backup_base_url        = "${bitbucket::base_url}",
+  $backup_keystore        = "${bitbucket::homedir}/shared/config/ssl-keystore",
 
   # Manage service
   $service_manage = true,
