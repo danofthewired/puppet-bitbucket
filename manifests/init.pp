@@ -68,7 +68,7 @@ class bitbucket(
   $backup_ensure          = 'present',
   $backupclient_url       = 'https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution',
   $backup_format          = 'zip',
-  $backupclient_version   = '5.6.0',
+  $backupclient_version   = '3.6.0',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
