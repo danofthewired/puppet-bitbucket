@@ -16,15 +16,17 @@ class bitbucket(
   $additional_env = undef,
 
   # Bitbucket Settings
-  $version      = '5.10.0',
-  $product      = 'bitbucket',
-  $format       = 'tar.gz',
-  $installdir   = '/opt/bitbucket',
-  $homedir      = '/home/bitbucket',
-  $context_path = '',
-  $tomcat_port  = 7990,
-  $tomcat_ssl   = false,
-  $logdir       = '/var/log/bitbucket',
+  $version        = '7.2.2',
+  $product        = 'bitbucket',
+  $format         = 'tar.gz',
+  $installdir     = '/opt/bitbucket',
+  $homedir        = '/home/bitbucket',
+  $context_path   = '',
+  $tomcat_port    = 7990,
+  $tomcat_ssl     = false, 
+  $logdir         = "${homedir}/log",
+  $log_maxhistory = '31', # days
+  $log_maxsize    = '25MB',
 
   # User and Group Management Settings
   $manage_usr_grp = true,
@@ -66,7 +68,7 @@ class bitbucket(
   $backup_ensure          = 'present',
   $backupclient_url       = 'https://maven.atlassian.com/content/groups/public/com/atlassian/bitbucket/server/backup/bitbucket-backup-distribution',
   $backup_format          = 'zip',
-  $backupclient_version   = '3.3.4',
+  $backupclient_version   = '5.6.0',
   $backup_home            = '/opt/bitbucket-backup',
   $backupuser             = 'admin',
   $backuppass             = 'password',
