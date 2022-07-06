@@ -98,13 +98,15 @@ class bitbucket::config(
     ],
   }
 
-  file { "${bitbucket::webappdir}/elasticsearch/config-template/elasticsearch.yml":
-    content => template('bitbucket/elasticsearch.yml.erb'),
-    mode    => '0640',
-    require => [
-      Class['bitbucket::install'],
-      File[$bitbucket::webappdir],
-    ],
+  if versioncmp($version, '7.21.0') < 0 {
+    file { "${bitbucket::webappdir}/elasticsearch/config-template/elasticsearch.yml":
+      content => template('bitbucket/elasticsearch.yml.erb'),
+      mode    => '0640',
+      require => [
+        Class['bitbucket::install'],
+        File[$bitbucket::webappdir],
+      ],
+    }
   }
 
   file { "${bitbucket::webappdir}/app/WEB-INF/classes/logback.xml":
