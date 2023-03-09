@@ -96,6 +96,8 @@ class bitbucket(
   # Choose whether to use nanliu-staging, or puppet-archive
   $deploy_module = 'archive',
 
+  # Chose whether options for application tunnel should be enabled
+  $application_tunnel_allowed = false,
 ) {
 
   validate_hash($config_properties)

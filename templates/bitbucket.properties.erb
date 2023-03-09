@@ -36,3 +36,7 @@ hazelcast.network.tcpip.members=<%= scope.lookupvar('bitbucket::hazelcast_networ
 <%- end -%>
 <%- if scope.lookupvar('bitbucket::elasticsearch_password') -%>plugin.search.elasticsearch.password=<%= scope.lookupvar('bitbucket::elasticsearch_password') %>
 <%- end -%>
+<%- if scope.lookupvar('bitbucket::application_tunnel_allowed') -%>
+server.additional-connector.1.port=8081
+plugin.secure.tunnel.upstream.port=8081
+<%- end -%>
