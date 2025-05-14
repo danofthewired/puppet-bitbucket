@@ -1,0 +1,38 @@
+cluster.name: bitbucket_search
+node:
+  name: bitbucket_bundled
+
+network.host: _local_
+discovery.type: single-node
+
+path:
+  logs: <%= scope.lookupvar('bitbucket::logdir') %>/search
+  data: ${BITBUCKET_HOME}/shared/search/data
+
+action.auto_create_index: false
+
+http.port: 7992
+transport.tcp.port: 7993
+
+# The OpenSearch security plugin stores its configuration in an index in the cluster itself. On startup if the
+# security index doesn't exist yet, sitting this to true will cause the security plugin to read the yml files and
+# configure the index using the contents of the files.
+plugins.security.allow_default_init_securityindex: true
+
+# Using the yml files with default initialisation, we create a bitbucket user and give it the all_access in-built role.
+# However, access to the REST API is disabled by default even for the all_access role so we need to explicitly give
+# it permission here so that the bitbucket user can access the OpenSearch REST API.
+plugins.security.restapi.roles_enabled: ["all_access"]
+
+# Mandatory TLS setup for transport layer
+plugins.security.authcz.admin_dn:
+  - CN=BITBUCKET
+plugins.security.ssl.transport.enforce_hostname_verification: false
+plugins.security.ssl.transport.pemcert_filepath: bitbucket.pem
+plugins.security.ssl.transport.pemkey_filepath: bitbucket-key.pem
+plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+
+# Logs audit events to bitbucket_search_server.json
+plugins.security.audit.type: log4j
+plugins.security.audit.config.log4j.logger_name: audit
+plugins.security.audit.config.log4j.level: INFO
