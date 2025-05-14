@@ -98,8 +98,15 @@ class bitbucket::config(
     ],
   }
 
-  file { "${bitbucket::webappdir}/elasticsearch/config-template/elasticsearch.yml":
-    content => template('bitbucket/elasticsearch.yml.erb'),
+  if versioncmp($version, '7.21') >= 0 {
+    $search_config = "${bitbucket::webappdir}/opensearch/config/opensearch.yml"
+    $search_config_template = 'bitbucket/opensearch.yml.erb'
+  } else {
+    $search_config = "${bitbucket::webappdir}/elasticsearch/config-template/elasticsearch.yml"
+    $search_config_template = 'bitbucket/elasticsearch.yml.erb'
+  }
+  file { $search_config:
+    content => template($search_config_template),
     mode    => '0640',
     require => [
       Class['bitbucket::install'],

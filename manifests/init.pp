@@ -98,7 +98,7 @@ class bitbucket(
 
 ) {
 
-  validate_hash($config_properties)
+  assert_type(Hash, $config_properties)
 
   include ::bitbucket::params
 

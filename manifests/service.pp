@@ -14,7 +14,7 @@ class bitbucket::service  (
 
 ) {
 
-  validate_bool($service_manage)
+  assert_type(Boolean, $service_manage)
 
   if $bitbucket::service_manage {
 
@@ -23,8 +23,8 @@ class bitbucket::service  (
       mode    => $service_file_mode,
     }
 
-    validate_string($service_ensure)
-    validate_bool($service_enable)
+    assert_type(String, $service_ensure)
+    assert_type(Boolean, $service_enable)
 
     if ($::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7') or ($::osfamily == 'Debian' and $::operatingsystemmajrelease == '16.04') {
       exec { 'bitbucket_refresh_systemd':
