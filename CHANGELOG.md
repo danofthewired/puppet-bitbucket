@@ -1,3 +1,7 @@
+##2025-05-14 - Releasing #2.3.1
+###Summary
+- Update version and compatibility
+
 ##2020-05-14 - Releasing #2.3.0
 ###Summary
 - Support for Bitbucket 7
